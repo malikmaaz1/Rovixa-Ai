@@ -1,98 +1,84 @@
-import { promises as fs } from "fs";
-import path from "path";
 import type { BlogInput, BlogPost } from "@/lib/blog-types";
+import { ensureDatabaseSchema, getSql } from "@/lib/db";
 import { makeSlug } from "@/lib/slug";
 
 export type { BlogInput, BlogPost } from "@/lib/blog-types";
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const DATA_FILE = path.join(DATA_DIR, "blogs.json");
+type BlogRow = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  cover_image: string;
+  meta_title: string;
+  meta_description: string;
+  status: "draft" | "published";
+  published_at: string;
+  updated_at: string;
+  created_at: string;
+};
 
-const seedPosts: BlogPost[] = [
-  {
-    id: "b-1",
-    title: "How AI Receptionists Help Growing Teams Never Miss Another Call",
-    slug: "never-miss-another-call",
-    excerpt:
-      "A practical look at after-hours coverage, lead qualification, and appointment booking with voice AI.",
-    content:
-      "After-hours calls are often the highest-intent conversations a business receives. An AI receptionist answers instantly, captures lead details, qualifies the request, and books the next step so nothing sits in voicemail overnight.",
-    category: "AI Receptionists",
-    coverImage: "",
-    metaTitle: "AI Receptionists That Never Miss a Call | RovixaAI",
-    metaDescription:
-      "Learn how AI receptionists capture after-hours leads, qualify callers, and book appointments automatically.",
-    status: "published",
-    publishedAt: "2026-08-12",
-    updatedAt: "2026-08-12T10:00:00.000Z",
-    createdAt: "2026-08-12T10:00:00.000Z",
-  },
-  {
-    id: "b-2",
-    title: "Website Chatbots That Convert: What High-Performing Businesses Get Right",
-    slug: "website-chatbots-that-convert",
-    excerpt:
-      "Design conversation flows that answer FAQs, capture intent, and hand off qualified leads cleanly.",
-    content:
-      "High-converting chatbots are trained on real FAQs, pricing rules, and booking logic. They answer instantly, qualify visitors, and only escalate conversations that need a human.",
-    category: "AI Chatbots",
-    coverImage: "",
-    metaTitle: "Website Chatbots That Convert | RovixaAI",
-    metaDescription:
-      "See how AI chatbots answer FAQs, qualify website visitors, and convert traffic into booked conversations.",
-    status: "published",
-    publishedAt: "2026-07-28",
-    updatedAt: "2026-07-28T10:00:00.000Z",
-    createdAt: "2026-07-28T10:00:00.000Z",
-  },
-];
-
-async function ensureStore() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  try {
-    await fs.access(DATA_FILE);
-  } catch {
-    await fs.writeFile(DATA_FILE, JSON.stringify(seedPosts, null, 2), "utf8");
-  }
+function mapRow(row: BlogRow): BlogPost {
+  return {
+    id: row.id,
+    title: row.title,
+    slug: row.slug,
+    excerpt: row.excerpt,
+    content: row.content,
+    category: row.category,
+    coverImage: row.cover_image,
+    metaTitle: row.meta_title,
+    metaDescription: row.meta_description,
+    status: row.status,
+    publishedAt: row.published_at || "",
+    updatedAt: row.updated_at,
+    createdAt: row.created_at,
+  };
 }
 
-async function readPosts(): Promise<BlogPost[]> {
-  await ensureStore();
-  const raw = await fs.readFile(DATA_FILE, "utf8");
-  return JSON.parse(raw) as BlogPost[];
-}
-
-async function writePosts(posts: BlogPost[]) {
-  await ensureStore();
-  await fs.writeFile(DATA_FILE, JSON.stringify(posts, null, 2), "utf8");
+async function ready() {
+  await ensureDatabaseSchema();
+  return getSql();
 }
 
 export async function listBlogPosts(options?: {
   status?: "draft" | "published" | "all";
 }) {
-  const posts = await readPosts();
+  const sql = await ready();
   const status = options?.status ?? "all";
-  const filtered =
-    status === "all" ? posts : posts.filter((post) => post.status === status);
 
-  return filtered.sort(
-    (a, b) =>
-      new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
-  );
+  const rows =
+    status === "all"
+      ? ((await sql`SELECT * FROM blogs ORDER BY updated_at DESC`) as BlogRow[])
+      : ((await sql`
+          SELECT * FROM blogs
+          WHERE status = ${status}
+          ORDER BY updated_at DESC
+        `) as BlogRow[]);
+
+  return rows.map(mapRow);
 }
 
 export async function getBlogBySlug(slug: string) {
-  const posts = await readPosts();
-  return posts.find((post) => post.slug === slug) ?? null;
+  const sql = await ready();
+  const rows = (await sql`
+    SELECT * FROM blogs WHERE slug = ${slug} LIMIT 1
+  `) as BlogRow[];
+  return rows[0] ? mapRow(rows[0]) : null;
 }
 
 export async function getBlogById(id: string) {
-  const posts = await readPosts();
-  return posts.find((post) => post.id === id) ?? null;
+  const sql = await ready();
+  const rows = (await sql`
+    SELECT * FROM blogs WHERE id = ${id} LIMIT 1
+  `) as BlogRow[];
+  return rows[0] ? mapRow(rows[0]) : null;
 }
 
 export async function createBlogPost(input: BlogInput) {
-  const posts = await readPosts();
+  const sql = await ready();
   const now = new Date().toISOString();
   const slug = makeSlug(input.slug || input.title);
 
@@ -100,7 +86,8 @@ export async function createBlogPost(input: BlogInput) {
     throw new Error("A valid URL slug is required.");
   }
 
-  if (posts.some((post) => post.slug === slug)) {
+  const existing = await getBlogBySlug(slug);
+  if (existing) {
     throw new Error("That URL slug is already in use.");
   }
 
@@ -120,26 +107,45 @@ export async function createBlogPost(input: BlogInput) {
     createdAt: now,
   };
 
-  posts.unshift(post);
-  await writePosts(posts);
+  await sql`
+    INSERT INTO blogs (
+      id, title, slug, excerpt, content, category, cover_image,
+      meta_title, meta_description, status, published_at, updated_at, created_at
+    ) VALUES (
+      ${post.id},
+      ${post.title},
+      ${post.slug},
+      ${post.excerpt},
+      ${post.content},
+      ${post.category},
+      ${post.coverImage},
+      ${post.metaTitle},
+      ${post.metaDescription},
+      ${post.status},
+      ${post.publishedAt},
+      ${post.updatedAt},
+      ${post.createdAt}
+    )
+  `;
+
   return post;
 }
 
 export async function updateBlogPost(id: string, input: BlogInput) {
-  const posts = await readPosts();
-  const index = posts.findIndex((post) => post.id === id);
-  if (index < 0) return null;
+  const existing = await getBlogById(id);
+  if (!existing) return null;
 
+  const sql = await ready();
   const slug = makeSlug(input.slug || input.title);
   if (!slug) {
     throw new Error("A valid URL slug is required.");
   }
 
-  if (posts.some((post) => post.slug === slug && post.id !== id)) {
+  const conflict = await getBlogBySlug(slug);
+  if (conflict && conflict.id !== id) {
     throw new Error("That URL slug is already in use.");
   }
 
-  const existing = posts[index];
   const now = new Date().toISOString();
   const updated: BlogPost = {
     ...existing,
@@ -159,15 +165,29 @@ export async function updateBlogPost(id: string, input: BlogInput) {
     updatedAt: now,
   };
 
-  posts[index] = updated;
-  await writePosts(posts);
+  await sql`
+    UPDATE blogs SET
+      title = ${updated.title},
+      slug = ${updated.slug},
+      excerpt = ${updated.excerpt},
+      content = ${updated.content},
+      category = ${updated.category},
+      cover_image = ${updated.coverImage},
+      meta_title = ${updated.metaTitle},
+      meta_description = ${updated.metaDescription},
+      status = ${updated.status},
+      published_at = ${updated.publishedAt},
+      updated_at = ${updated.updatedAt}
+    WHERE id = ${id}
+  `;
+
   return updated;
 }
 
 export async function deleteBlogPost(id: string) {
-  const posts = await readPosts();
-  const next = posts.filter((post) => post.id !== id);
-  if (next.length === posts.length) return false;
-  await writePosts(next);
+  const sql = await ready();
+  const existing = await getBlogById(id);
+  if (!existing) return false;
+  await sql`DELETE FROM blogs WHERE id = ${id}`;
   return true;
 }

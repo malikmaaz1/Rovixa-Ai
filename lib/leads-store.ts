@@ -1,3 +1,5 @@
+import { ensureDatabaseSchema, getSql } from "@/lib/db";
+
 export type InquiryLead = {
   id: string;
   name: string;
@@ -14,31 +16,61 @@ export type InquiryLead = {
   createdAt: string;
 };
 
-declare global {
-  // eslint-disable-next-line no-var
-  var __rovixaLeads: InquiryLead[] | undefined;
-}
-
-function store(): InquiryLead[] {
-  if (!globalThis.__rovixaLeads) {
-    globalThis.__rovixaLeads = [];
-  }
-  return globalThis.__rovixaLeads;
-}
-
-export function listLeads(): InquiryLead[] {
-  return [...store()].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-  );
-}
-
-export function createLead(input: {
+type SubmissionRow = {
+  id: string;
   name: string;
   company: string;
   email: string;
   phone: string;
   message: string;
-}): InquiryLead {
+  score: number;
+  status: InquiryLead["status"];
+  source: string;
+  value: string;
+  owner: string;
+  updated: string;
+  created_at: string;
+};
+
+function mapRow(row: SubmissionRow): InquiryLead {
+  return {
+    id: row.id,
+    name: row.name,
+    company: row.company,
+    email: row.email,
+    phone: row.phone,
+    message: row.message,
+    score: row.score,
+    status: row.status,
+    source: row.source,
+    value: row.value,
+    owner: row.owner,
+    updated: row.updated,
+    createdAt: row.created_at,
+  };
+}
+
+async function ready() {
+  await ensureDatabaseSchema();
+  return getSql();
+}
+
+export async function listLeads(): Promise<InquiryLead[]> {
+  const sql = await ready();
+  const rows = (await sql`
+    SELECT * FROM submissions ORDER BY created_at DESC
+  `) as SubmissionRow[];
+  return rows.map(mapRow);
+}
+
+export async function createLead(input: {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  message: string;
+}): Promise<InquiryLead> {
+  const sql = await ready();
   const lead: InquiryLead = {
     id: `l-${Date.now()}`,
     name: input.name.trim(),
@@ -55,17 +87,49 @@ export function createLead(input: {
     createdAt: new Date().toISOString(),
   };
 
-  store().unshift(lead);
+  await sql`
+    INSERT INTO submissions (
+      id, name, company, email, phone, message, score, status,
+      source, value, owner, updated, created_at
+    ) VALUES (
+      ${lead.id},
+      ${lead.name},
+      ${lead.company},
+      ${lead.email},
+      ${lead.phone},
+      ${lead.message},
+      ${lead.score},
+      ${lead.status},
+      ${lead.source},
+      ${lead.value},
+      ${lead.owner},
+      ${lead.updated},
+      ${lead.createdAt}
+    )
+  `;
+
   return lead;
 }
 
-export function updateLeadStatus(
+export async function updateLeadStatus(
   id: string,
   status: InquiryLead["status"],
-): InquiryLead | null {
-  const lead = store().find((item) => item.id === id);
-  if (!lead) return null;
-  lead.status = status;
-  lead.updated = "Just now";
-  return lead;
+): Promise<InquiryLead | null> {
+  const sql = await ready();
+  const rows = (await sql`
+    SELECT * FROM submissions WHERE id = ${id} LIMIT 1
+  `) as SubmissionRow[];
+  if (!rows[0]) return null;
+
+  await sql`
+    UPDATE submissions
+    SET status = ${status}, updated = ${"Just now"}
+    WHERE id = ${id}
+  `;
+
+  return {
+    ...mapRow(rows[0]),
+    status,
+    updated: "Just now",
+  };
 }

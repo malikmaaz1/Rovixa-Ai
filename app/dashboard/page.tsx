@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export default async function DashboardOverviewPage() {
   const [posts, submissions] = await Promise.all([
     listBlogPosts(),
-    Promise.resolve(listLeads()),
+    listLeads(),
   ]);
 
   const published = posts.filter((post) => post.status === "published").length;

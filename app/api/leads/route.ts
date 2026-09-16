@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { createLead, listLeads, updateLeadStatus } from "@/lib/leads-store";
 
 export async function GET() {
-  return NextResponse.json({ leads: listLeads() });
+  const leads = await listLeads();
+  return NextResponse.json({ leads });
 }
 
 export async function POST(request: Request) {
@@ -21,7 +22,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const lead = createLead({
+  const lead = await createLead({
     name: body.name,
     company: body.company || "",
     email: body.email,
@@ -45,7 +46,7 @@ export async function PATCH(request: Request) {
     );
   }
 
-  const lead = updateLeadStatus(body.id, body.status);
+  const lead = await updateLeadStatus(body.id, body.status);
   if (!lead) {
     return NextResponse.json({ error: "Lead not found." }, { status: 404 });
   }
