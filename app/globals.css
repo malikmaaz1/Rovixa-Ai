@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #060b18;
+  --foreground: #e8eefc;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy-975: #040814;
+  --color-navy-950: #060b18;
+  --color-navy-925: #0a1224;
+  --color-navy-900: #101a33;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-900: #1e3a8a;
+  --font-sans: var(--font-plus-jakarta);
+  --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.28);
+  --shadow-panel: 0 30px 80px rgba(2, 8, 23, 0.55);
+  --background-image-brand-gradient: linear-gradient(135deg, #2563eb, #38bdf8);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-plus-jakarta), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.35);
+  color: white;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(circle at center, black 30%, transparent 75%);
+}
+
+.bg-brand-gradient {
+  background-image: var(--background-image-brand-gradient);
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.shadow-panel {
+  box-shadow: var(--shadow-panel);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
