@@ -34,7 +34,7 @@ export function MotionSection({
       className={className}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.18 }}
+      viewport={{ once: true, amount: 0.12, margin: "0px 0px -80px 0px" }}
       variants={{
         ...stagger,
         show: {

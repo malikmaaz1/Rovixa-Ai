@@ -1,5 +1,6 @@
 import type { BlogInput, BlogPost } from "@/lib/blog-types";
 import { ensureDatabaseSchema, getSql } from "@/lib/db";
+import { seedBlogPosts } from "@/lib/seed-blog-posts";
 import { makeSlug } from "@/lib/slug";
 
 export type { BlogInput, BlogPost } from "@/lib/blog-types";
@@ -38,43 +39,130 @@ function mapRow(row: BlogRow): BlogPost {
   };
 }
 
+function filterSeeds(status: "draft" | "published" | "all") {
+  if (status === "all") return seedBlogPosts;
+  return seedBlogPosts.filter((post) => post.status === status);
+}
+
+let seedsSynced: Promise<void> | null = null;
+
+async function syncSeedPosts() {
+  if (!seedsSynced) {
+    seedsSynced = (async () => {
+      const sql = getSql();
+      for (const post of seedBlogPosts) {
+        const existing = (await sql`
+          SELECT id FROM blogs WHERE slug = ${post.slug} LIMIT 1
+        `) as { id: string }[];
+
+        if (existing.length > 0) {
+          const current = (await sql`
+            SELECT content FROM blogs WHERE slug = ${post.slug} LIMIT 1
+          `) as { content: string }[];
+          const currentContent = current[0]?.content || "";
+
+          // Upgrade short seed stubs; leave intentionally edited posts alone.
+          if (currentContent.length < 600) {
+            await sql`
+              UPDATE blogs SET
+                title = ${post.title},
+                excerpt = ${post.excerpt},
+                content = ${post.content},
+                category = ${post.category},
+                meta_title = ${post.metaTitle},
+                meta_description = ${post.metaDescription},
+                status = ${post.status},
+                published_at = ${post.publishedAt},
+                updated_at = ${post.updatedAt}
+              WHERE slug = ${post.slug}
+            `;
+          }
+        } else {
+          await sql`
+            INSERT INTO blogs (
+              id, title, slug, excerpt, content, category, cover_image,
+              meta_title, meta_description, status, published_at, updated_at, created_at
+            ) VALUES (
+              ${post.id},
+              ${post.title},
+              ${post.slug},
+              ${post.excerpt},
+              ${post.content},
+              ${post.category},
+              ${post.coverImage},
+              ${post.metaTitle},
+              ${post.metaDescription},
+              ${post.status},
+              ${post.publishedAt},
+              ${post.updatedAt},
+              ${post.createdAt}
+            )
+          `;
+        }
+      }
+    })().catch((error) => {
+      seedsSynced = null;
+      throw error;
+    });
+  }
+
+  await seedsSynced;
+}
+
 async function ready() {
   await ensureDatabaseSchema();
+  await syncSeedPosts();
   return getSql();
 }
 
 export async function listBlogPosts(options?: {
   status?: "draft" | "published" | "all";
 }) {
-  const sql = await ready();
   const status = options?.status ?? "all";
 
-  const rows =
-    status === "all"
-      ? ((await sql`SELECT * FROM blogs ORDER BY updated_at DESC`) as BlogRow[])
-      : ((await sql`
-          SELECT * FROM blogs
-          WHERE status = ${status}
-          ORDER BY updated_at DESC
-        `) as BlogRow[]);
+  try {
+    const sql = await ready();
+    const rows =
+      status === "all"
+        ? ((await sql`SELECT * FROM blogs ORDER BY updated_at DESC`) as BlogRow[])
+        : ((await sql`
+            SELECT * FROM blogs
+            WHERE status = ${status}
+            ORDER BY updated_at DESC
+          `) as BlogRow[]);
 
-  return rows.map(mapRow);
+    return rows.map(mapRow);
+  } catch {
+    return filterSeeds(status);
+  }
 }
 
 export async function getBlogBySlug(slug: string) {
-  const sql = await ready();
-  const rows = (await sql`
-    SELECT * FROM blogs WHERE slug = ${slug} LIMIT 1
-  `) as BlogRow[];
-  return rows[0] ? mapRow(rows[0]) : null;
+  try {
+    const sql = await ready();
+    const rows = (await sql`
+      SELECT * FROM blogs WHERE slug = ${slug} LIMIT 1
+    `) as BlogRow[];
+    if (rows[0]) return mapRow(rows[0]);
+  } catch {
+    // fall through to seed content
+  }
+
+  return seedBlogPosts.find((post) => post.slug === slug) ?? null;
 }
 
 export async function getBlogById(id: string) {
-  const sql = await ready();
-  const rows = (await sql`
-    SELECT * FROM blogs WHERE id = ${id} LIMIT 1
-  `) as BlogRow[];
-  return rows[0] ? mapRow(rows[0]) : null;
+  try {
+    const sql = await ready();
+    const rows = (await sql`
+      SELECT * FROM blogs WHERE id = ${id} LIMIT 1
+    `) as BlogRow[];
+    if (rows[0]) return mapRow(rows[0]);
+  } catch {
+    // fall through
+  }
+
+  return seedBlogPosts.find((post) => post.id === id) ?? null;
 }
 
 export async function createBlogPost(input: BlogInput) {

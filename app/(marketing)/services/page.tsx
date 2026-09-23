@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { MotionItem, MotionSection, SectionHeading } from "@/components/ui/Section";
 import { services } from "@/lib/content";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -55,8 +56,8 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
-                  <Button href="/contact" className="mt-8" size="lg">
-                    Start With Inquiry
+                  <Button href={site.calendly} className="mt-8" size="lg">
+                    Book a Demo
                   </Button>
                 </div>
 

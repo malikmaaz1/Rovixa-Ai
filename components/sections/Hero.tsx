@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2, Phone, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { site } from "@/lib/site";
 import { easeOutExpo } from "@/lib/motion";
 
 const feed = [
@@ -26,9 +27,9 @@ export function Hero() {
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 pb-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:px-8 lg:pb-24">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: easeOutExpo }}
+          transition={{ duration: 0.55, ease: easeOutExpo }}
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-brand-400/25 bg-brand-500/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-brand-200">
             <Sparkles className="h-3.5 w-3.5" />
@@ -46,8 +47,8 @@ export function Hero() {
             business never loses another customer.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/contact" size="lg">
-              Book a Free Demo
+            <Button href={site.calendly} size="lg">
+              Book a Demo
             </Button>
             <Button href="/services" variant="secondary" size="lg">
               Explore Services

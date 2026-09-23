@@ -17,8 +17,8 @@ export function Footer() {
             AI employees for modern businesses. Answer, qualify, and book —
             automatically, 24/7.
           </p>
-          <Button href="/contact" className="mt-6" size="md">
-            Book Free Demo
+          <Button href={site.calendly} className="mt-6" size="md">
+            Book a Demo
           </Button>
         </div>
 
@@ -37,14 +37,6 @@ export function Footer() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link
-                href="/dashboard"
-                className="text-sm text-slate-300 transition hover:text-white"
-              >
-                Admin Dashboard
-              </Link>
-            </li>
           </ul>
         </div>
 
@@ -59,14 +51,12 @@ export function Footer() {
                 {site.email}
               </a>
             </li>
-            {site.phones.map((phone) => (
-              <li key={phone.href} className="flex items-start gap-3">
-                <Phone className="mt-0.5 h-4 w-4 text-brand-300" />
-                <a href={phone.href} className="hover:text-white">
-                  {phone.label}: {phone.display}
-                </a>
-              </li>
-            ))}
+            <li className="flex items-start gap-3">
+              <Phone className="mt-0.5 h-4 w-4 text-brand-300" />
+              <a href={site.phone.href} className="hover:text-white">
+                {site.phone.display}
+              </a>
+            </li>
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-4 w-4 text-brand-300" />
               <span>{site.address}</span>

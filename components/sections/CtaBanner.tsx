@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
+import { site } from "@/lib/site";
 
 export function CtaBanner({
   title = "Ready to automate your front desk?",
-  description = "Book a free consultation and see how RovixaAI can answer calls, capture leads, and streamline operations for your business.",
+  description = "Book a free demo and see how RovixaAI can answer calls, capture leads, and streamline operations for your business.",
   className,
 }: {
   title?: string;
@@ -26,11 +27,11 @@ export function CtaBanner({
             {description}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/contact" size="lg">
-              Book Free Demo
+            <Button href={site.calendly} size="lg">
+              Book a Demo
             </Button>
-            <Button href="/contact" variant="secondary" size="lg">
-              Send an Inquiry
+            <Button href="/services" variant="secondary" size="lg">
+              Explore Services
             </Button>
           </div>
         </div>

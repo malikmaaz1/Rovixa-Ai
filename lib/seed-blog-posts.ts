@@ -1,9 +1,13 @@
-const { neon } = require("@neondatabase/serverless");
+import type { BlogPost } from "@/lib/blog-types";
 
-const seedPosts = [
+const now = "2026-03-23T12:00:00.000Z";
+const publishedAt = "2026-03-23";
+
+export const seedBlogPosts: BlogPost[] = [
   {
     id: "b-seed-001",
-    title: "Why Missed Calls Are Quietly Killing Your Revenue (And How AI Receptionists Fix It)",
+    title:
+      "Why Missed Calls Are Quietly Killing Your Revenue (And How AI Receptionists Fix It)",
     slug: "why-missed-calls-kill-revenue",
     excerpt:
       "Missed and after-hours calls drain pipeline before your team ever sees the opportunity. Learn the real cost of unanswered rings—and how AI receptionists recover revenue 24/7.",
@@ -65,9 +69,15 @@ RovixaAI builds AI receptionists that answer, qualify, and book—then sync the 
 
 If you want to see this in action for your industry, book a RovixaAI demo and we will map the highest-value call flows first.`,
     category: "AI Receptionists",
-    meta_title: "Missed Calls Killing Revenue? How AI Receptionists Fix It | RovixaAI",
-    meta_description:
+    coverImage: "",
+    metaTitle:
+      "Missed Calls Killing Revenue? How AI Receptionists Fix It | RovixaAI",
+    metaDescription:
       "Discover how missed and after-hours calls drain revenue—and how AI receptionists answer, qualify, and book appointments 24/7 to recover lost pipeline.",
+    status: "published",
+    publishedAt,
+    updatedAt: now,
+    createdAt: now,
   },
   {
     id: "b-seed-002",
@@ -130,9 +140,15 @@ RovixaAI builds AI chatbots designed to convert—not just chat. If your site al
 
 Book a demo to see a conversion-focused chatbot flow tailored to your offer.`,
     category: "AI Chatbots",
-    meta_title: "AI Chatbots That Convert Website Traffic Into Booked Calls | RovixaAI",
-    meta_description:
+    coverImage: "",
+    metaTitle:
+      "AI Chatbots That Convert Website Traffic Into Booked Calls | RovixaAI",
+    metaDescription:
       "Learn how conversion-focused AI chatbots qualify website visitors, answer FAQs, and book demos instead of filling your inbox with cold lead forms.",
+    status: "published",
+    publishedAt,
+    updatedAt: now,
+    createdAt: now,
   },
   {
     id: "b-seed-003",
@@ -200,9 +216,15 @@ RovixaAI connects voice agents, chatbots, forms, CRM, and calendar so every inqu
 
 Book a demo and we will map a follow-up workflow around your current tools and lead volume.`,
     category: "AI Automation",
-    meta_title: "Automating Lead Follow-Up With AI: A Practical Playbook | RovixaAI",
-    meta_description:
+    coverImage: "",
+    metaTitle:
+      "Automating Lead Follow-Up With AI: A Practical Playbook | RovixaAI",
+    metaDescription:
       "Use this AI automation playbook to speed up lead follow-up—from instant replies and CRM logging to routing, reminders, and booked appointments.",
+    status: "published",
+    publishedAt,
+    updatedAt: now,
+    createdAt: now,
   },
   {
     id: "b-seed-004",
@@ -266,111 +288,14 @@ The goal is not to remove humans. It is to reserve humans for the work only huma
 
 RovixaAI builds AI receptionists, chatbots, and automation systems for teams that want premium customer experience without linear hiring. If you are planning the next stage of growth, book a demo and we will map the highest-ROI coverage for your call and chat volume.`,
     category: "Business Growth",
-    meta_title: "Grow Your Service Business With AI Without Hiring Faster | RovixaAI",
-    meta_description:
+    coverImage: "",
+    metaTitle:
+      "Grow Your Service Business With AI Without Hiring Faster | RovixaAI",
+    metaDescription:
       "Learn how service businesses use AI receptionists and chatbots to expand capacity, recover missed inquiries, and grow without accelerating hiring.",
+    status: "published",
+    publishedAt,
+    updatedAt: now,
+    createdAt: now,
   },
 ];
-
-async function main() {
-  const url = process.env.DATABASE_URL;
-  if (!url) {
-    throw new Error("DATABASE_URL missing");
-  }
-
-  const sql = neon(url);
-
-  await sql`
-    CREATE TABLE IF NOT EXISTS blogs (
-      id TEXT PRIMARY KEY,
-      title TEXT NOT NULL,
-      slug TEXT NOT NULL UNIQUE,
-      excerpt TEXT NOT NULL DEFAULT '',
-      content TEXT NOT NULL DEFAULT '',
-      category TEXT NOT NULL DEFAULT '',
-      cover_image TEXT NOT NULL DEFAULT '',
-      meta_title TEXT NOT NULL DEFAULT '',
-      meta_description TEXT NOT NULL DEFAULT '',
-      status TEXT NOT NULL DEFAULT 'draft',
-      published_at TEXT NOT NULL DEFAULT '',
-      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-    )
-  `;
-
-  await sql`
-    CREATE TABLE IF NOT EXISTS submissions (
-      id TEXT PRIMARY KEY,
-      name TEXT NOT NULL,
-      company TEXT NOT NULL DEFAULT '',
-      email TEXT NOT NULL,
-      phone TEXT NOT NULL DEFAULT '',
-      message TEXT NOT NULL DEFAULT '',
-      score INTEGER NOT NULL DEFAULT 70,
-      status TEXT NOT NULL DEFAULT 'New',
-      source TEXT NOT NULL DEFAULT 'Contact Form',
-      value TEXT NOT NULL DEFAULT 'TBD',
-      owner TEXT NOT NULL DEFAULT 'Unassigned',
-      updated TEXT NOT NULL DEFAULT 'Just now',
-      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-    )
-  `;
-
-  const now = new Date().toISOString();
-  const publishedAt = now.slice(0, 10);
-  let upserted = 0;
-
-  for (const post of seedPosts) {
-    const existing = await sql`SELECT id, published_at FROM blogs WHERE slug = ${post.slug} LIMIT 1`;
-
-    if (existing.length > 0) {
-      await sql`
-        UPDATE blogs SET
-          title = ${post.title},
-          excerpt = ${post.excerpt},
-          content = ${post.content},
-          category = ${post.category},
-          meta_title = ${post.meta_title},
-          meta_description = ${post.meta_description},
-          status = ${"published"},
-          published_at = ${existing[0].published_at || publishedAt},
-          updated_at = ${now}
-        WHERE slug = ${post.slug}
-      `;
-    } else {
-      await sql`
-        INSERT INTO blogs (
-          id, title, slug, excerpt, content, category, cover_image,
-          meta_title, meta_description, status, published_at, updated_at, created_at
-        ) VALUES (
-          ${post.id},
-          ${post.title},
-          ${post.slug},
-          ${post.excerpt},
-          ${post.content},
-          ${post.category},
-          ${""},
-          ${post.meta_title},
-          ${post.meta_description},
-          ${"published"},
-          ${publishedAt},
-          ${now},
-          ${now}
-        )
-      `;
-    }
-    upserted += 1;
-  }
-
-  const blogs = await sql`SELECT COUNT(*)::int AS count FROM blogs`;
-  const submissions = await sql`SELECT COUNT(*)::int AS count FROM submissions`;
-
-  console.log(
-    `OK connected. upserted=${upserted} blogs=${blogs[0].count} submissions=${submissions[0].count}`,
-  );
-}
-
-main().catch((error) => {
-  console.error("FAIL", error.message);
-  process.exit(1);
-});

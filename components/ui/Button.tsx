@@ -25,6 +25,7 @@ type ButtonProps = {
   size?: keyof typeof sizes;
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
+  external?: boolean;
 };
 
 export function Button({
@@ -35,6 +36,7 @@ export function Button({
   size = "md",
   type = "button",
   onClick,
+  external,
 }: ButtonProps) {
   const classes = cn(
     "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950",
@@ -44,6 +46,21 @@ export function Button({
   );
 
   if (href) {
+    const isExternal = external ?? /^https?:\/\//.test(href);
+
+    if (isExternal) {
+      return (
+        <a
+          href={href}
+          className={classes}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
       <Link href={href} className={classes}>
         {children}

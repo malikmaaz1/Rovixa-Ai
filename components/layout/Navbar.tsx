@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
-import { navLinks } from "@/lib/site";
+import { navLinks, site } from "@/lib/site";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -64,8 +64,8 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href="/contact" size="md">
-            Book Demo
+          <Button href={site.calendly} size="md">
+            Book a Demo
           </Button>
         </div>
 
@@ -91,8 +91,8 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Button href="/contact" className="mt-3 w-full" size="lg">
-              Book Demo
+            <Button href={site.calendly} className="mt-3 w-full" size="lg">
+              Book a Demo
             </Button>
           </div>
         </div>

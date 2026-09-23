@@ -15,9 +15,9 @@ Premium Next.js marketing site for RovixaAI — an AI Automation & AI Receptioni
 - `/` Home
 - `/services` Services
 - `/industries` Industries
+- `/pricing` Pricing (placeholder)
 - `/about` About Us
 - `/blog` Blog
-- `/contact` Contact Us
 - `/dashboard` Admin (blogs + form submissions)
 
 ## Getting Started

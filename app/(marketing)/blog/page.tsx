@@ -6,12 +6,22 @@ import { MotionItem, MotionSection, SectionHeading } from "@/components/ui/Secti
 import { blogCategories } from "@/lib/dashboard";
 import { listBlogPosts } from "@/lib/blog-store";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Insights on AI receptionists, AI chatbots, AI automation, and business growth from RovixaAI.",
+    "SEO-focused insights on AI receptionists, AI chatbots, AI automation, lead follow-up, and business growth from RovixaAI.",
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "RovixaAI Blog",
+    description:
+      "Practical guides on AI receptionists, chatbots, automation, and growth for service businesses.",
+    url: "/blog",
+    type: "website",
+  },
 };
 
 export default async function BlogPage() {
@@ -54,7 +64,7 @@ export default async function BlogPage() {
                     alt={post.title}
                     fill
                     className="object-cover"
-                    unoptimized
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                   />
                 ) : null}
               </div>

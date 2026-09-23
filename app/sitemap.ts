@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { listBlogPosts } from "@/lib/blog-store";
 import { site } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
@@ -12,7 +12,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/industries",
     "/about",
     "/blog",
-    "/contact",
   ];
 
   const staticEntries = routes.map((route) => ({
