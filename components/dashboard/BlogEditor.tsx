@@ -277,13 +277,13 @@ export function BlogEditor({ mode, initial }: Props) {
         </div>
       </div>
 
-      {error ? <p className="text-sm text-rose-300">{error}</p> : null}
+      {error ? <p className="text-sm text-neutral-300">{error}</p> : null}
 
       <div className="flex flex-wrap gap-3">
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-400 disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black hover:bg-neutral-200 disabled:opacity-60"
         >
           {saving ? <LoaderCircle className="h-4 w-4 animate-spin" /> : null}
           {mode === "edit" ? "Update post" : "Create post"}

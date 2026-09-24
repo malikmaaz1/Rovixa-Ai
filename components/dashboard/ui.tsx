@@ -25,8 +25,8 @@ export function StatCard({
             className={cn(
               "rounded-full px-2 py-0.5 text-[11px] font-semibold",
               positive
-                ? "bg-emerald-400/15 text-emerald-300"
-                : "bg-rose-400/15 text-rose-300",
+                ? "bg-white/15 text-white"
+                : "bg-white/5 text-neutral-400",
             )}
           >
             {change}
@@ -83,17 +83,17 @@ export function StatusPill({
     status === "Resolved" ||
     status === "Qualified" ||
     status === "Published"
-      ? "bg-emerald-400/15 text-emerald-300"
+      ? "bg-white/15 text-white"
       : status === "Transferred" ||
           status === "In review" ||
           status === "Pending" ||
           status === "Escalated" ||
           status === "New" ||
           status === "Draft"
-        ? "bg-amber-400/15 text-amber-300"
+        ? "bg-white/10 text-neutral-300"
         : status === "Missed follow-up" || status === "Available"
-          ? "bg-rose-400/15 text-rose-300"
-          : "bg-slate-400/15 text-slate-300";
+          ? "bg-white/5 text-neutral-500"
+          : "bg-white/5 text-neutral-400";
 
   return (
     <span className={cn("rounded-full px-2.5 py-1 text-[11px] font-semibold", tone)}>

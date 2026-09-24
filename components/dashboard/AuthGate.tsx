@@ -126,10 +126,10 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
               className="w-full rounded-2xl border border-white/10 bg-navy-950/70 px-4 py-3 text-sm text-white outline-none focus:border-brand-400/40"
             />
           </label>
-          {error ? <p className="text-sm text-rose-300">{error}</p> : null}
+          {error ? <p className="text-sm text-neutral-300">{error}</p> : null}
           <button
             type="submit"
-            className="w-full rounded-full bg-brand-500 px-4 py-3 text-sm font-semibold text-white hover:bg-brand-400"
+            className="w-full rounded-full bg-white px-4 py-3 text-sm font-semibold text-black hover:bg-neutral-200"
           >
             Sign in to dashboard
           </button>

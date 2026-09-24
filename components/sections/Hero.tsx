@@ -19,8 +19,8 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-36">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[12%] top-10 h-[28rem] w-[28rem] rounded-full bg-brand-500/25 blur-[130px]" />
-        <div className="absolute right-[-5%] top-32 h-[24rem] w-[24rem] rounded-full bg-cyan-400/15 blur-[120px]" />
+        <div className="absolute left-[12%] top-10 h-[28rem] w-[28rem] rounded-full bg-white/10 blur-[130px]" />
+        <div className="absolute right-[-5%] top-32 h-[24rem] w-[24rem] rounded-full bg-white/5 blur-[120px]" />
         <div className="absolute inset-0 bg-grid opacity-35" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-navy-950 to-transparent" />
       </div>
@@ -37,7 +37,7 @@ export function Hero() {
           </div>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-[3.5rem] lg:leading-[1.05]">
             AI Employees That
-            <span className="mt-1 block bg-gradient-to-r from-brand-300 via-cyan-300 to-sky-200 bg-clip-text text-transparent">
+            <span className="mt-1 block bg-gradient-to-r from-white via-neutral-300 to-neutral-500 bg-clip-text text-transparent">
               Never Miss a Call
             </span>
           </h1>
@@ -101,15 +101,15 @@ export function Hero() {
                   RovixaAI Command Center
                 </p>
               </div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-semibold text-emerald-300">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-300" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
                 Online
               </span>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-brand-500/20 via-transparent to-cyan-400/10 p-4">
+            <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/15 via-transparent to-white/5 p-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-500/20 text-brand-200">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-white">
                   <Phone className="h-5 w-5" />
                 </div>
                 <div>

@@ -58,8 +58,8 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-[1.75rem] border border-emerald-400/20 bg-emerald-400/10 p-8 text-center">
-        <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-300" />
+      <div className="rounded-[1.75rem] border border-white/20 bg-white/10 p-8 text-center">
+        <CheckCircle2 className="mx-auto h-10 w-10 text-white" />
         <h3 className="mt-4 text-2xl font-semibold text-white">
           Inquiry received
         </h3>
@@ -106,7 +106,7 @@ export function ContactForm() {
       </label>
 
       {error ? (
-        <p className="mt-4 text-sm text-rose-300">{error}</p>
+        <p className="mt-4 text-sm text-neutral-300">{error}</p>
       ) : null}
 
       <Button

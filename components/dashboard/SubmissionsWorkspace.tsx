@@ -61,7 +61,7 @@ export function SubmissionsWorkspace() {
               onClick={() => setFilter(item)}
               className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
                 filter === item
-                  ? "bg-brand-500 text-white"
+                  ? "bg-white text-black"
                   : "border border-white/10 bg-white/5 text-slate-300"
               }`}
             >

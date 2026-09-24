@@ -43,7 +43,7 @@ export default function IndustriesPage() {
 
               <div className="mt-8 grid gap-5 lg:grid-cols-3">
                 <div className="rounded-2xl border border-white/10 bg-navy-950/50 p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-300">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-400">
                     Problem
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-slate-300">
@@ -59,7 +59,7 @@ export default function IndustriesPage() {
                   </p>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-navy-950/50 p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-300">
                     Benefits
                   </p>
                   <ul className="mt-3 space-y-2">
@@ -68,7 +68,7 @@ export default function IndustriesPage() {
                         key={benefit}
                         className="flex items-start gap-2 text-sm text-slate-300"
                       >
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-300" />
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-300" />
                         {benefit}
                       </li>
                     ))}

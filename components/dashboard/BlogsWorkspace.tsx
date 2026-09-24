@@ -39,7 +39,7 @@ export function BlogsWorkspace() {
           actions={
             <Link
               href="/dashboard/blogs/new"
-              className="rounded-full bg-brand-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-400"
+              className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black hover:bg-neutral-200"
             >
               New post
             </Link>
@@ -102,7 +102,7 @@ export function BlogsWorkspace() {
                   <button
                     type="button"
                     onClick={() => void handleDelete(post.id)}
-                    className="rounded-full border border-rose-400/20 bg-rose-400/10 px-3 py-1.5 text-xs font-semibold text-rose-300"
+                    className="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-semibold text-neutral-300"
                   >
                     Delete
                   </button>

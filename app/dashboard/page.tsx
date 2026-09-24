@@ -27,7 +27,7 @@ export default async function DashboardOverviewPage() {
             <div className="flex gap-2">
               <Link
                 href="/dashboard/blogs/new"
-                className="rounded-full bg-brand-500 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-400"
+                className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black hover:bg-neutral-200"
               >
                 New blog
               </Link>

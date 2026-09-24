@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #060b18;
-  --foreground: #e8eefc;
+  --background: #000000;
+  --foreground: #f5f5f5;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-navy-975: #040814;
-  --color-navy-950: #060b18;
-  --color-navy-925: #0a1224;
-  --color-navy-900: #101a33;
-  --color-brand-200: #bfdbfe;
-  --color-brand-300: #93c5fd;
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-900: #1e3a8a;
+  --color-navy-975: #000000;
+  --color-navy-950: #050505;
+  --color-navy-925: #0a0a0a;
+  --color-navy-900: #141414;
+  --color-brand-200: #e5e5e5;
+  --color-brand-300: #d4d4d4;
+  --color-brand-400: #a3a3a3;
+  --color-brand-500: #ffffff;
+  --color-brand-600: #e5e5e5;
+  --color-brand-900: #262626;
   --font-sans: var(--font-plus-jakarta);
-  --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.28);
-  --shadow-panel: 0 30px 80px rgba(2, 8, 23, 0.55);
-  --background-image-brand-gradient: linear-gradient(135deg, #2563eb, #38bdf8);
+  --shadow-glow: 0 0 40px rgba(255, 255, 255, 0.12);
+  --shadow-panel: 0 30px 80px rgba(0, 0, 0, 0.65);
+  --background-image-brand-gradient: linear-gradient(135deg, #ffffff, #737373);
 }
 
 * {
@@ -40,14 +40,14 @@ body {
 }
 
 ::selection {
-  background: rgba(59, 130, 246, 0.35);
+  background: rgba(255, 255, 255, 0.25);
   color: white;
 }
 
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(circle at center, black 30%, transparent 75%);
 }

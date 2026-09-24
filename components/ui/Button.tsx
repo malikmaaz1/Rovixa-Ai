@@ -4,11 +4,11 @@ import { cn } from "@/lib/cn";
 
 const variants = {
   primary:
-    "bg-brand-500 text-white shadow-glow hover:bg-brand-400 focus-visible:ring-brand-300",
+    "bg-white text-black shadow-glow hover:bg-neutral-200 focus-visible:ring-white",
   secondary:
-    "bg-white/5 text-white ring-1 ring-white/15 hover:bg-white/10 focus-visible:ring-white/40",
+    "bg-white/5 text-white ring-1 ring-white/20 hover:bg-white/10 focus-visible:ring-white/40",
   ghost:
-    "bg-transparent text-slate-200 hover:bg-white/5 focus-visible:ring-white/30",
+    "bg-transparent text-neutral-200 hover:bg-white/5 focus-visible:ring-white/30",
 } as const;
 
 const sizes = {

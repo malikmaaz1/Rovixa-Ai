@@ -6,6 +6,7 @@ import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { IndustriesPreview } from "@/components/sections/IndustriesPreview";
+import { PricingPreview } from "@/components/sections/PricingPreview";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { TrustMarquee } from "@/components/sections/TrustMarquee";
 import { WhatWeDo } from "@/components/sections/WhatWeDo";
@@ -26,6 +27,7 @@ export default function HomePage() {
       <WhatWeDo />
       <HowItWorks />
       <FeatureGrid />
+      <PricingPreview />
       <IndustriesPreview />
       <Comparison />
       <Testimonials />

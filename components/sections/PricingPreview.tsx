@@ -30,7 +30,7 @@ export function PricingPreview() {
               )}
             >
               {plan.featured ? (
-                <span className="absolute -top-3 left-6 rounded-full bg-brand-500 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
+                <span className="absolute -top-3 left-6 rounded-full bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-black">
                   Most Popular
                 </span>
               ) : null}
