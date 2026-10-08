@@ -24,15 +24,15 @@ export function WhatWeDo() {
             <MotionItem key={item.slug}>
               <Link
                 href={item.href}
-                className="group flex h-full flex-col rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-400/40 hover:bg-white/[0.06]"
+                className="group flex h-full flex-col rounded-[1.5rem] border border-black/10 bg-black/[0.03] p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-400/40 hover:bg-black/[0.05]"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-300 transition group-hover:scale-105">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-5 text-xl font-semibold text-white">
+                <h3 className="mt-5 text-xl font-semibold text-neutral-900">
                   {item.title}
                 </h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-300">
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600">
                   {item.description}
                 </p>
                 <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-300">

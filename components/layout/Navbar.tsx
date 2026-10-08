@@ -30,7 +30,7 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition duration-300",
         scrolled
-          ? "border-b border-white/10 bg-navy-950/85 backdrop-blur-xl"
+          ? "border-b border-black/10 bg-navy-950/85 backdrop-blur-xl"
           : "bg-transparent",
       )}
     >
@@ -53,8 +53,8 @@ export function Navbar() {
                 className={cn(
                   "rounded-full px-4 py-2 text-sm font-medium transition",
                   active
-                    ? "bg-white/10 text-white"
-                    : "text-slate-300 hover:bg-white/5 hover:text-white",
+                    ? "bg-black/5 text-neutral-900"
+                    : "text-neutral-600 hover:bg-black/[0.03] hover:text-neutral-900",
                 )}
               >
                 {link.label}
@@ -71,7 +71,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex rounded-xl border border-white/10 bg-white/5 p-2 text-white lg:hidden"
+          className="inline-flex rounded-xl border border-black/10 bg-black/[0.03] p-2 text-neutral-900 lg:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((value) => !value)}
         >
@@ -80,13 +80,13 @@ export function Navbar() {
       </div>
 
       {open ? (
-        <div className="border-t border-white/10 bg-navy-950/95 px-4 py-4 backdrop-blur-xl lg:hidden">
+        <div className="border-t border-black/10 bg-navy-950/95 px-4 py-4 backdrop-blur-xl lg:hidden">
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-4 py-3 text-sm font-medium text-slate-200 hover:bg-white/5"
+                className="rounded-xl px-4 py-3 text-sm font-medium text-neutral-700 hover:bg-black/[0.03]"
               >
                 {link.label}
               </Link>

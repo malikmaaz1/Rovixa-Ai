@@ -16,14 +16,14 @@ export function HowItWorks() {
         <div className="pointer-events-none absolute left-0 right-0 top-10 hidden h-px bg-gradient-to-r from-transparent via-brand-400/40 to-transparent lg:block" />
         {howItWorks.map((item) => (
           <MotionItem key={item.step}>
-            <div className="relative h-full rounded-[1.5rem] border border-white/10 bg-navy-900/60 p-5">
+            <div className="relative h-full rounded-[1.5rem] border border-black/10 bg-navy-900/60 p-5">
               <div className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-400/30 bg-brand-500/15 text-sm font-semibold text-brand-200">
                 {item.step}
               </div>
-              <h3 className="mt-5 text-lg font-semibold text-white">
+              <h3 className="mt-5 text-lg font-semibold text-neutral-900">
                 {item.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-300">
+              <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                 {item.description}
               </p>
             </div>

@@ -13,17 +13,17 @@ export function CtaBanner({
 }) {
   return (
     <section className={cn("mx-auto max-w-7xl px-4 sm:px-6 lg:px-8", className)}>
-      <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-navy-900 via-navy-925 to-black px-6 py-12 sm:px-10 lg:px-14">
-        <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-20 left-10 h-56 w-56 rounded-full bg-white/5 blur-3xl" />
+      <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-neutral-50 px-6 py-12 sm:px-10 lg:px-14">
+        <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-black/[0.04] blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-20 left-10 h-56 w-56 rounded-full bg-black/[0.03] blur-3xl" />
         <div className="relative max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
             Next Step
           </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
             {title}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-200 sm:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-neutral-600 sm:text-lg">
             {description}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">

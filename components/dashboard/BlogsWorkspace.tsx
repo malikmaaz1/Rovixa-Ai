@@ -39,7 +39,7 @@ export function BlogsWorkspace() {
           actions={
             <Link
               href="/dashboard/blogs/new"
-              className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black hover:bg-neutral-200"
+              className="rounded-full bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800"
             >
               New post
             </Link>
@@ -51,9 +51,9 @@ export function BlogsWorkspace() {
             {posts.map((post) => (
               <div
                 key={post.id}
-                className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-navy-950/40 p-4 lg:flex-row lg:items-center"
+                className="flex flex-col gap-4 rounded-2xl border border-black/10 bg-navy-950/40 p-4 lg:flex-row lg:items-center"
               >
-                <div className="relative h-24 w-full overflow-hidden rounded-xl bg-white/5 lg:h-20 lg:w-32">
+                <div className="relative h-24 w-full overflow-hidden rounded-xl bg-black/[0.03] lg:h-20 lg:w-32">
                   {post.coverImage ? (
                     <Image
                       src={post.coverImage}
@@ -63,46 +63,46 @@ export function BlogsWorkspace() {
                       unoptimized
                     />
                   ) : (
-                    <div className="flex h-full items-center justify-center text-xs text-slate-500">
+                    <div className="flex h-full items-center justify-center text-xs text-neutral-500">
                       No image
                     </div>
                   )}
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="truncate text-base font-semibold text-white">
+                    <h3 className="truncate text-base font-semibold text-neutral-900">
                       {post.title}
                     </h3>
                     <StatusPill
                       status={post.status === "published" ? "Published" : "Draft"}
                     />
                   </div>
-                  <p className="mt-1 text-xs text-slate-500">
+                  <p className="mt-1 text-xs text-neutral-500">
                     /blog/{post.slug} · {post.category} · updated{" "}
                     {new Date(post.updatedAt).toLocaleDateString()}
                   </p>
-                  <p className="mt-2 line-clamp-2 text-sm text-slate-400">
+                  <p className="mt-2 line-clamp-2 text-sm text-neutral-500">
                     {post.excerpt}
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300"
+                    className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1.5 text-xs font-semibold text-neutral-600"
                     target="_blank"
                   >
                     View
                   </Link>
                   <Link
                     href={`/dashboard/blogs/${post.id}`}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300"
+                    className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1.5 text-xs font-semibold text-neutral-600"
                   >
                     Edit
                   </Link>
                   <button
                     type="button"
                     onClick={() => void handleDelete(post.id)}
-                    className="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-semibold text-neutral-300"
+                    className="rounded-full border border-black/20 bg-black/[0.03] px-3 py-1.5 text-xs font-semibold text-neutral-300"
                   >
                     Delete
                   </button>
@@ -110,7 +110,7 @@ export function BlogsWorkspace() {
               </div>
             ))}
             {!loading && posts.length === 0 ? (
-              <p className="text-sm text-slate-400">No blog posts yet.</p>
+              <p className="text-sm text-neutral-500">No blog posts yet.</p>
             ) : null}
           </div>
         </Panel>

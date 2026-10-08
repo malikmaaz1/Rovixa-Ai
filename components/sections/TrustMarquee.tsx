@@ -6,9 +6,9 @@ export function TrustMarquee() {
   const logos = [...trustLogos, ...trustLogos];
 
   return (
-    <section className="border-y border-white/5 bg-navy-975/60 py-10">
+    <section className="border-y border-black/5 bg-navy-975/60 py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
           Trusted by modern teams worldwide
         </p>
         <div className="relative mt-6 overflow-hidden">
@@ -18,7 +18,7 @@ export function TrustMarquee() {
             {logos.map((logo, index) => (
               <span
                 key={`${logo}-${index}`}
-                className="text-lg font-semibold tracking-tight text-slate-500/90"
+                className="text-lg font-semibold tracking-tight text-neutral-500/90"
               >
                 {logo}
               </span>

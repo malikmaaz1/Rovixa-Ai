@@ -12,8 +12,8 @@ export function Comparison() {
         />
       </MotionItem>
 
-      <MotionItem className="mt-12 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.03]">
-        <div className="grid grid-cols-[1.1fr_1fr_1fr] border-b border-white/10 bg-navy-900/70 px-4 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400 sm:px-6">
+      <MotionItem className="mt-12 overflow-hidden rounded-[1.75rem] border border-black/10 bg-black/[0.03]">
+        <div className="grid grid-cols-[1.1fr_1fr_1fr] border-b border-black/10 bg-navy-900/70 px-4 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500 sm:px-6">
           <span>Compare</span>
           <span>Traditional Receptionist</span>
           <span className="text-brand-300">RovixaAI</span>
@@ -23,11 +23,11 @@ export function Comparison() {
             <div
               key={row.label}
               className={`grid grid-cols-[1.1fr_1fr_1fr] gap-3 px-4 py-4 text-sm sm:px-6 ${
-                index % 2 === 0 ? "bg-transparent" : "bg-white/[0.02]"
+                index % 2 === 0 ? "bg-transparent" : "bg-black/[0.02]"
               }`}
             >
-              <span className="font-medium text-white">{row.label}</span>
-              <span className="text-slate-400">{row.traditional}</span>
+              <span className="font-medium text-neutral-900">{row.label}</span>
+              <span className="text-neutral-500">{row.traditional}</span>
               <span className="font-medium text-brand-200">{row.rovixa}</span>
             </div>
           ))}

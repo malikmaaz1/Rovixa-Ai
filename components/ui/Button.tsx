@@ -4,11 +4,11 @@ import { cn } from "@/lib/cn";
 
 const variants = {
   primary:
-    "bg-white text-black shadow-glow hover:bg-neutral-200 focus-visible:ring-white",
+    "bg-black text-white shadow-glow hover:bg-neutral-800 focus-visible:ring-black",
   secondary:
-    "bg-white/5 text-white ring-1 ring-white/20 hover:bg-white/10 focus-visible:ring-white/40",
+    "bg-black/[0.03] text-neutral-900 ring-1 ring-black/15 hover:bg-black/[0.06] focus-visible:ring-black/30",
   ghost:
-    "bg-transparent text-neutral-200 hover:bg-white/5 focus-visible:ring-white/30",
+    "bg-transparent text-neutral-700 hover:bg-black/[0.03] focus-visible:ring-black/20",
 } as const;
 
 const sizes = {
@@ -39,7 +39,7 @@ export function Button({
   external,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950",
+    "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
     variants[variant],
     sizes[size],
     className,

@@ -25,33 +25,33 @@ export function PricingPreview() {
               className={cn(
                 "relative flex h-full flex-col rounded-[1.75rem] border p-6",
                 plan.featured
-                  ? "border-brand-400/50 bg-gradient-to-b from-brand-500/20 to-navy-900/80 shadow-glow"
-                  : "border-white/10 bg-white/[0.03]",
+                  ? "border-black/20 bg-neutral-50 shadow-glow"
+                  : "border-black/10 bg-white",
               )}
             >
               {plan.featured ? (
-                <span className="absolute -top-3 left-6 rounded-full bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-black">
+                <span className="absolute -top-3 left-6 rounded-full bg-black px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
                   Most Popular
                 </span>
               ) : null}
-              <h3 className="text-xl font-semibold text-white">{plan.name}</h3>
-              <p className="mt-2 text-sm text-slate-300">{plan.description}</p>
+              <h3 className="text-xl font-semibold text-neutral-900">{plan.name}</h3>
+              <p className="mt-2 text-sm text-neutral-600">{plan.description}</p>
               <div className="mt-5 flex flex-wrap items-end gap-x-2 gap-y-1">
                 {plan.period === "starting from" ? (
                   <>
-                    <span className="pb-1 text-sm text-slate-400">
+                    <span className="pb-1 text-sm text-neutral-500">
                       Starting from
                     </span>
-                    <span className="text-4xl font-semibold text-white">
+                    <span className="text-4xl font-semibold text-neutral-900">
                       {plan.price}
                     </span>
                   </>
                 ) : (
                   <>
-                    <span className="text-4xl font-semibold text-white">
+                    <span className="text-4xl font-semibold text-neutral-900">
                       {plan.price}
                     </span>
-                    <span className="pb-1 text-sm text-slate-400">
+                    <span className="pb-1 text-sm text-neutral-500">
                       {plan.period}
                     </span>
                   </>
@@ -61,7 +61,7 @@ export function PricingPreview() {
                 {plan.features.map((feature) => (
                   <li
                     key={feature}
-                    className="flex items-start gap-2 text-sm text-slate-300"
+                    className="flex items-start gap-2 text-sm text-neutral-600"
                   >
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-300" />
                     {feature}
@@ -81,7 +81,7 @@ export function PricingPreview() {
         ))}
       </div>
 
-      <p className="mt-8 text-center text-sm text-slate-400">
+      <p className="mt-8 text-center text-sm text-neutral-500">
         Additional AI Voice Minutes: $0.90 per minute.
       </p>
     </MotionSection>

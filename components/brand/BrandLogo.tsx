@@ -18,7 +18,7 @@ export function BrandLogo({
     return (
       <span
         className={cn(
-          "inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-white",
+          "inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-black/10 bg-white",
           className,
         )}
       >
@@ -37,7 +37,7 @@ export function BrandLogo({
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center overflow-hidden rounded-xl bg-white px-2.5 py-1.5",
+        "inline-flex shrink-0 items-center overflow-hidden rounded-xl border border-black/10 bg-white px-2.5 py-1.5",
         className,
       )}
     >

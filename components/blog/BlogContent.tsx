@@ -12,7 +12,7 @@ function renderInline(text: string): ReactNode[] {
       parts.push(text.slice(lastIndex, match.index));
     }
     parts.push(
-      <strong key={`b-${key++}`} className="font-semibold text-white">
+      <strong key={`b-${key++}`} className="font-semibold text-neutral-900">
         {match[1]}
       </strong>,
     );
@@ -45,7 +45,7 @@ export function BlogContent({ content }: { content: string }) {
       blocks.push(
         <h3
           key={`h3-${key++}`}
-          className="mt-8 text-xl font-semibold tracking-tight text-white"
+          className="mt-8 text-xl font-semibold tracking-tight text-neutral-900"
         >
           {renderInline(trimmed.slice(4))}
         </h3>,
@@ -58,7 +58,7 @@ export function BlogContent({ content }: { content: string }) {
       blocks.push(
         <h2
           key={`h2-${key++}`}
-          className="mt-10 text-2xl font-semibold tracking-tight text-white"
+          className="mt-10 text-2xl font-semibold tracking-tight text-neutral-900"
         >
           {renderInline(trimmed.slice(3))}
         </h2>,
@@ -121,7 +121,7 @@ export function BlogContent({ content }: { content: string }) {
   }
 
   return (
-    <div className="text-base leading-relaxed text-slate-300 sm:text-[1.05rem]">
+    <div className="text-base leading-relaxed text-neutral-600 sm:text-[1.05rem]">
       {blocks}
     </div>
   );

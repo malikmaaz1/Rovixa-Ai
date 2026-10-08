@@ -58,12 +58,12 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-[1.75rem] border border-white/20 bg-white/10 p-8 text-center">
-        <CheckCircle2 className="mx-auto h-10 w-10 text-white" />
-        <h3 className="mt-4 text-2xl font-semibold text-white">
+      <div className="rounded-[1.75rem] border border-black/20 bg-black/5 p-8 text-center">
+        <CheckCircle2 className="mx-auto h-10 w-10 text-neutral-900" />
+        <h3 className="mt-4 text-2xl font-semibold text-neutral-900">
           Inquiry received
         </h3>
-        <p className="mt-3 text-sm leading-relaxed text-slate-300">
+        <p className="mt-3 text-sm leading-relaxed text-neutral-600">
           Thanks for reaching out. Your lead is now in the RovixaAI dashboard —
           our team will contact you shortly to schedule your discovery call.
         </p>
@@ -74,12 +74,12 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8"
+      className="rounded-[1.75rem] border border-black/10 bg-black/[0.03] p-6 sm:p-8"
     >
       <div className="grid gap-5 sm:grid-cols-2">
         {fields.map((field) => (
-          <label key={field.name} className="block text-sm text-slate-300">
-            <span className="mb-2 block font-medium text-white">
+          <label key={field.name} className="block text-sm text-neutral-600">
+            <span className="mb-2 block font-medium text-neutral-900">
               {field.label}
             </span>
             <input
@@ -87,20 +87,20 @@ export function ContactForm() {
               name={field.name}
               type={field.type}
               autoComplete={field.autoComplete}
-              className="w-full rounded-2xl border border-white/10 bg-navy-950/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-brand-400/50 focus:ring-2 focus:ring-brand-400/20"
+              className="w-full rounded-2xl border border-black/10 bg-navy-950/70 px-4 py-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-500 focus:border-brand-400/50 focus:ring-2 focus:ring-brand-400/20"
               placeholder={field.label}
             />
           </label>
         ))}
       </div>
 
-      <label className="mt-5 block text-sm text-slate-300">
-        <span className="mb-2 block font-medium text-white">Message</span>
+      <label className="mt-5 block text-sm text-neutral-600">
+        <span className="mb-2 block font-medium text-neutral-900">Message</span>
         <textarea
           required
           name="message"
           rows={5}
-          className="w-full rounded-2xl border border-white/10 bg-navy-950/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-brand-400/50 focus:ring-2 focus:ring-brand-400/20"
+          className="w-full rounded-2xl border border-black/10 bg-navy-950/70 px-4 py-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-500 focus:border-brand-400/50 focus:ring-2 focus:ring-brand-400/20"
           placeholder="Tell us about your business and what you want to automate"
         />
       </label>

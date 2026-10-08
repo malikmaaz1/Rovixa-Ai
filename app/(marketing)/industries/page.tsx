@@ -30,35 +30,35 @@ export default function IndustriesPage() {
             <section
               key={industry.slug}
               id={industry.slug}
-              className="scroll-mt-28 rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8"
+              className="scroll-mt-28 rounded-[1.75rem] border border-black/10 bg-black/[0.03] p-6 sm:p-8"
             >
               <div className="flex flex-wrap items-center gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-300">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h2 className="text-2xl font-semibold text-white sm:text-3xl">
+                <h2 className="text-2xl font-semibold text-neutral-900 sm:text-3xl">
                   {industry.title}
                 </h2>
               </div>
 
               <div className="mt-8 grid gap-5 lg:grid-cols-3">
-                <div className="rounded-2xl border border-white/10 bg-navy-950/50 p-5">
+                <div className="rounded-2xl border border-black/10 bg-navy-950/50 p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-400">
                     Problem
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-300">
+                  <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                     {industry.problem}
                   </p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-navy-950/50 p-5">
+                <div className="rounded-2xl border border-black/10 bg-navy-950/50 p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-300">
                     Solution
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-300">
+                  <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                     {industry.solution}
                   </p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-navy-950/50 p-5">
+                <div className="rounded-2xl border border-black/10 bg-navy-950/50 p-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-300">
                     Benefits
                   </p>
@@ -66,7 +66,7 @@ export default function IndustriesPage() {
                     {industry.benefits.map((benefit) => (
                       <li
                         key={benefit}
-                        className="flex items-start gap-2 text-sm text-slate-300"
+                        className="flex items-start gap-2 text-sm text-neutral-600"
                       >
                         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-300" />
                         {benefit}

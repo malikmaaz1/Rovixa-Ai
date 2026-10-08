@@ -42,7 +42,7 @@ export default async function BlogPage() {
           {blogCategories.map((category) => (
             <span
               key={category}
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300"
+              className="rounded-full border border-black/10 bg-black/[0.03] px-4 py-2 text-sm text-neutral-600"
             >
               {category}
             </span>
@@ -55,9 +55,9 @@ export default async function BlogPage() {
           {posts.map((post) => (
             <article
               key={post.id}
-              className="flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.03] transition hover:border-brand-400/40 hover:bg-white/[0.05]"
+              className="flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-black/10 bg-black/[0.03] transition hover:border-brand-400/40 hover:bg-black/[0.04]"
             >
-              <div className="relative aspect-[16/10] bg-white/5">
+              <div className="relative aspect-[16/10] bg-black/[0.03]">
                 {post.coverImage ? (
                   <Image
                     src={post.coverImage}
@@ -69,7 +69,7 @@ export default async function BlogPage() {
                 ) : null}
               </div>
               <div className="flex flex-1 flex-col p-6">
-                <div className="flex items-center justify-between gap-3 text-xs text-slate-400">
+                <div className="flex items-center justify-between gap-3 text-xs text-neutral-500">
                   <span className="rounded-full bg-brand-500/15 px-3 py-1 font-semibold text-brand-200">
                     {post.category}
                   </span>
@@ -80,12 +80,12 @@ export default async function BlogPage() {
                     )}
                   </time>
                 </div>
-                <h2 className="mt-5 text-xl font-semibold text-white">
+                <h2 className="mt-5 text-xl font-semibold text-neutral-900">
                   <Link href={`/blog/${post.slug}`} className="hover:text-brand-200">
                     {post.title}
                   </Link>
                 </h2>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-300">
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600">
                   {post.excerpt}
                 </p>
                 <Link
@@ -99,7 +99,7 @@ export default async function BlogPage() {
           ))}
         </div>
         {posts.length === 0 ? (
-          <p className="text-center text-sm text-slate-400">
+          <p className="text-center text-sm text-neutral-500">
             No published articles yet.
           </p>
         ) : null}

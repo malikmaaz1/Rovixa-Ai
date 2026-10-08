@@ -32,24 +32,24 @@ export default function ServicesPage() {
             <section
               key={service.slug}
               id={service.slug}
-              className="scroll-mt-28 overflow-hidden rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-white/[0.05] to-transparent p-6 sm:p-8"
+              className="scroll-mt-28 overflow-hidden rounded-[1.75rem] border border-black/10 bg-gradient-to-br from-white/[0.05] to-transparent p-6 sm:p-8"
             >
               <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
                 <div>
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-300">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h2 className="mt-5 text-3xl font-semibold text-white">
+                  <h2 className="mt-5 text-3xl font-semibold text-neutral-900">
                     {service.title}
                   </h2>
-                  <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-300">
+                  <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-600">
                     {service.description}
                   </p>
                   <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                     {service.features.map((feature) => (
                       <li
                         key={feature}
-                        className="flex items-start gap-2 text-sm text-slate-300"
+                        className="flex items-start gap-2 text-sm text-neutral-600"
                       >
                         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-300" />
                         {feature}
@@ -61,20 +61,20 @@ export default function ServicesPage() {
                   </Button>
                 </div>
 
-                <div className="rounded-[1.5rem] border border-white/10 bg-navy-950/60 p-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                <div className="rounded-[1.5rem] border border-black/10 bg-navy-950/60 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
                     Service Process
                   </p>
                   <div className="mt-5 space-y-4">
                     {service.process.map((step, index) => (
                       <div
                         key={step.title}
-                        className="rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+                        className="rounded-2xl border border-black/10 bg-black/[0.03] p-4"
                       >
                         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-300">
                           {String(index + 1).padStart(2, "0")} · {step.title}
                         </p>
-                        <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                        <p className="mt-2 text-sm leading-relaxed text-neutral-600">
                           {step.description}
                         </p>
                       </div>

@@ -17,11 +17,11 @@ export function FeatureGrid() {
           const Icon = feature.icon;
           return (
             <MotionItem key={feature.title}>
-              <div className="flex h-full items-center gap-3 rounded-2xl border border-white/10 bg-navy-900/40 px-4 py-4 transition hover:border-brand-400/30 hover:bg-white/[0.04]">
+              <div className="flex h-full items-center gap-3 rounded-2xl border border-black/10 bg-navy-900/40 px-4 py-4 transition hover:border-brand-400/30 hover:bg-black/[0.03]">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-500/15 text-brand-300">
                   <Icon className="h-4 w-4" />
                 </div>
-                <p className="text-sm font-semibold text-white">{feature.title}</p>
+                <p className="text-sm font-semibold text-neutral-900">{feature.title}</p>
               </div>
             </MotionItem>
           );

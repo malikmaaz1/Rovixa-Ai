@@ -20,15 +20,15 @@ export function IndustriesPreview() {
             <MotionItem key={industry.slug}>
               <Link
                 href={`/industries#${industry.slug}`}
-                className="group block h-full rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6 transition hover:-translate-y-1 hover:border-brand-400/40 hover:bg-white/[0.06]"
+                className="group block h-full rounded-[1.5rem] border border-black/10 bg-black/[0.03] p-6 transition hover:-translate-y-1 hover:border-brand-400/40 hover:bg-black/[0.05]"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-300">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-4 text-lg font-semibold text-white">
+                <h3 className="mt-4 text-lg font-semibold text-neutral-900">
                   {industry.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-300">
+                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                   {industry.solution}
                 </p>
                 <span className="mt-5 inline-block text-sm font-semibold text-brand-300">

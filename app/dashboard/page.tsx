@@ -27,13 +27,13 @@ export default async function DashboardOverviewPage() {
             <div className="flex gap-2">
               <Link
                 href="/dashboard/blogs/new"
-                className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black hover:bg-neutral-200"
+                className="rounded-full bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800"
               >
                 New blog
               </Link>
               <Link
                 href="/dashboard/submissions"
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
+                className="rounded-full border border-black/10 bg-black/[0.03] px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-black/5"
               >
                 View submissions
               </Link>
@@ -71,16 +71,16 @@ export default async function DashboardOverviewPage() {
               {posts.slice(0, 5).map((post) => (
                 <div
                   key={post.id}
-                  className="rounded-xl border border-white/8 bg-navy-950/50 p-3"
+                  className="rounded-xl border border-black/8 bg-navy-950/50 p-3"
                 >
-                  <p className="text-sm font-medium text-white">{post.title}</p>
-                  <p className="mt-1 text-xs text-slate-500">
+                  <p className="text-sm font-medium text-neutral-900">{post.title}</p>
+                  <p className="mt-1 text-xs text-neutral-500">
                     /blog/{post.slug} · {post.status}
                   </p>
                 </div>
               ))}
               {posts.length === 0 ? (
-                <p className="text-sm text-slate-400">No posts yet.</p>
+                <p className="text-sm text-neutral-500">No posts yet.</p>
               ) : null}
             </div>
           </Panel>
@@ -100,16 +100,16 @@ export default async function DashboardOverviewPage() {
               {submissions.slice(0, 5).map((item) => (
                 <div
                   key={item.id}
-                  className="rounded-xl border border-white/8 bg-navy-950/50 p-3"
+                  className="rounded-xl border border-black/8 bg-navy-950/50 p-3"
                 >
-                  <p className="text-sm font-medium text-white">{item.name}</p>
-                  <p className="mt-1 text-xs text-slate-500">
+                  <p className="text-sm font-medium text-neutral-900">{item.name}</p>
+                  <p className="mt-1 text-xs text-neutral-500">
                     {item.company} · {item.status} · {item.source}
                   </p>
                 </div>
               ))}
               {submissions.length === 0 ? (
-                <p className="text-sm text-slate-400">No submissions yet.</p>
+                <p className="text-sm text-neutral-500">No submissions yet.</p>
               ) : null}
             </div>
           </Panel>

@@ -21,8 +21,8 @@ export default function AboutPage() {
           />
         </MotionItem>
 
-        <MotionItem className="mx-auto mt-10 max-w-4xl rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-          <p className="text-base leading-relaxed text-slate-300 sm:text-lg">
+        <MotionItem className="mx-auto mt-10 max-w-4xl rounded-[1.75rem] border border-black/10 bg-black/[0.03] p-6 sm:p-8">
+          <p className="text-base leading-relaxed text-neutral-600 sm:text-lg">
             We are an AI automation company focused on production-ready systems —
             AI receptionists that never miss calls, chatbots that convert website
             traffic, and workflows that keep leads moving without manual chase.
@@ -42,14 +42,14 @@ export default function AboutPage() {
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {aboutProcess.map((step, index) => (
             <MotionItem key={step.title}>
-              <div className="h-full rounded-[1.5rem] border border-white/10 bg-navy-900/50 p-5">
+              <div className="h-full rounded-[1.5rem] border border-black/10 bg-navy-900/50 p-5">
                 <p className="text-sm font-semibold text-brand-300">
                   {String(index + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-3 text-lg font-semibold text-white">
+                <h3 className="mt-3 text-lg font-semibold text-neutral-900">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-300">
+                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                   {step.description}
                 </p>
               </div>
@@ -68,9 +68,9 @@ export default function AboutPage() {
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {aboutWhy.map((item) => (
             <MotionItem key={item.title}>
-              <div className="h-full rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-white/[0.05] to-transparent p-6">
-                <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-300">
+              <div className="h-full rounded-[1.5rem] border border-black/10 bg-gradient-to-br from-white/[0.05] to-transparent p-6">
+                <h3 className="text-xl font-semibold text-neutral-900">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                   {item.description}
                 </p>
               </div>

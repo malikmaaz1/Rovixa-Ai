@@ -15,9 +15,9 @@ export function StatCard({
   detail?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+    <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-5">
       <div className="flex items-start justify-between gap-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
           {label}
         </p>
         {change ? (
@@ -25,18 +25,18 @@ export function StatCard({
             className={cn(
               "rounded-full px-2 py-0.5 text-[11px] font-semibold",
               positive
-                ? "bg-white/15 text-white"
-                : "bg-white/5 text-neutral-400",
+                ? "bg-black/10 text-neutral-900"
+                : "bg-black/[0.03] text-neutral-400",
             )}
           >
             {change}
           </span>
         ) : null}
       </div>
-      <p className="mt-3 text-3xl font-semibold tracking-tight text-white">
+      <p className="mt-3 text-3xl font-semibold tracking-tight text-neutral-900">
         {value}
       </p>
-      {detail ? <p className="mt-2 text-sm text-slate-400">{detail}</p> : null}
+      {detail ? <p className="mt-2 text-sm text-neutral-500">{detail}</p> : null}
     </div>
   );
 }
@@ -55,12 +55,12 @@ export function Panel({
   return (
     <section
       className={cn(
-        "rounded-2xl border border-white/10 bg-white/[0.03] p-5",
+        "rounded-2xl border border-black/10 bg-black/[0.03] p-5",
         className,
       )}
     >
       <div className="mb-4 flex items-center justify-between gap-3">
-        <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-400">
+        <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-neutral-500">
           {title}
         </h2>
         {action}
@@ -83,17 +83,17 @@ export function StatusPill({
     status === "Resolved" ||
     status === "Qualified" ||
     status === "Published"
-      ? "bg-white/15 text-white"
+      ? "bg-black/10 text-neutral-900"
       : status === "Transferred" ||
           status === "In review" ||
           status === "Pending" ||
           status === "Escalated" ||
           status === "New" ||
           status === "Draft"
-        ? "bg-white/10 text-neutral-300"
+        ? "bg-black/5 text-neutral-300"
         : status === "Missed follow-up" || status === "Available"
-          ? "bg-white/5 text-neutral-500"
-          : "bg-white/5 text-neutral-400";
+          ? "bg-black/[0.03] text-neutral-500"
+          : "bg-black/[0.03] text-neutral-400";
 
   return (
     <span className={cn("rounded-full px-2.5 py-1 text-[11px] font-semibold", tone)}>
@@ -114,10 +114,10 @@ export function PageHeader({
   return (
     <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+        <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 sm:text-3xl">
           {title}
         </h1>
-        <p className="mt-1 text-sm text-slate-400">{description}</p>
+        <p className="mt-1 text-sm text-neutral-500">{description}</p>
       </div>
       {actions}
     </div>

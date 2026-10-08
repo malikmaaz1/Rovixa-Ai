@@ -122,19 +122,19 @@ export default async function BlogArticlePage({ params }: Props) {
         <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-brand-300">
           {post.category}
         </p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-5xl">
           {post.title}
         </h1>
-        <p className="mt-4 text-sm text-slate-400">
+        <p className="mt-4 text-sm text-neutral-500">
           {new Date(post.publishedAt || post.createdAt).toLocaleDateString(
             "en-US",
             { month: "long", day: "numeric", year: "numeric" },
           )}
-          <span className="mx-2 text-slate-600">·</span>
+          <span className="mx-2 text-neutral-400">·</span>
           {minutes} min read
         </p>
         {post.coverImage ? (
-          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-white/10">
+          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-black/10">
             <Image
               src={post.coverImage}
               alt={post.title}
@@ -145,15 +145,15 @@ export default async function BlogArticlePage({ params }: Props) {
             />
           </div>
         ) : null}
-        <p className="mt-8 text-lg leading-relaxed text-slate-200">
+        <p className="mt-8 text-lg leading-relaxed text-neutral-700">
           {post.excerpt}
         </p>
         <BlogContent content={post.content} />
-        <div className="mt-12 rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-          <h2 className="text-xl font-semibold text-white">
+        <div className="mt-12 rounded-[1.5rem] border border-black/10 bg-black/[0.03] p-6 sm:p-8">
+          <h2 className="text-xl font-semibold text-neutral-900">
             Ready to put this into practice?
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-slate-300">
+          <p className="mt-3 text-sm leading-relaxed text-neutral-600">
             Book a RovixaAI demo and we will map the right receptionist,
             chatbot, and automation mix for your lead flow.
           </p>

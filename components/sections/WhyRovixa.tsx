@@ -17,14 +17,14 @@ export function WhyRovixa() {
           const Icon = item.icon;
           return (
             <MotionItem key={item.title}>
-              <div className="h-full rounded-[1.5rem] border border-white/10 bg-gradient-to-b from-white/[0.06] to-transparent p-6">
+              <div className="h-full rounded-[1.5rem] border border-black/10 bg-gradient-to-b from-white/[0.06] to-transparent p-6">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-500/15 text-brand-300">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-5 text-lg font-semibold text-white">
+                <h3 className="mt-5 text-lg font-semibold text-neutral-900">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-300">
+                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                   {item.description}
                 </p>
               </div>

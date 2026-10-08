@@ -126,8 +126,8 @@ export function BlogEditor({ mode, initial }: Props) {
           </Field>
 
           <Field label="URL slug">
-            <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-navy-950/70 px-3">
-              <span className="text-xs text-slate-500">/blog/</span>
+            <div className="flex items-center gap-2 rounded-2xl border border-black/10 bg-navy-950/70 px-3">
+              <span className="text-xs text-neutral-500">/blog/</span>
               <input
                 required
                 value={slug}
@@ -135,11 +135,11 @@ export function BlogEditor({ mode, initial }: Props) {
                   setSlugTouched(true);
                   setSlug(makeSlug(event.target.value));
                 }}
-                className="w-full bg-transparent py-3 text-sm text-white outline-none"
+                className="w-full bg-transparent py-3 text-sm text-neutral-900 outline-none"
                 placeholder="post-url"
               />
             </div>
-            <p className="mt-2 text-xs text-slate-500">Public URL: {previewUrl}</p>
+            <p className="mt-2 text-xs text-neutral-500">Public URL: {previewUrl}</p>
           </Field>
 
           <Field label="Excerpt">
@@ -170,7 +170,7 @@ export function BlogEditor({ mode, initial }: Props) {
 
         <div className="space-y-5">
           <Field label="Cover image">
-            <div className="rounded-2xl border border-dashed border-white/15 bg-navy-950/50 p-4">
+            <div className="rounded-2xl border border-dashed border-black/15 bg-navy-950/50 p-4">
               {coverImage ? (
                 <div className="relative mb-3 aspect-[16/10] overflow-hidden rounded-xl">
                   <Image
@@ -182,11 +182,11 @@ export function BlogEditor({ mode, initial }: Props) {
                   />
                 </div>
               ) : (
-                <p className="mb-3 text-sm text-slate-400">
+                <p className="mb-3 text-sm text-neutral-500">
                   Upload a cover image for social and blog cards.
                 </p>
               )}
-              <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10">
+              <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-black/5">
                 {uploading ? (
                   <LoaderCircle className="h-4 w-4 animate-spin" />
                 ) : (
@@ -206,7 +206,7 @@ export function BlogEditor({ mode, initial }: Props) {
               {coverImage ? (
                 <button
                   type="button"
-                  className="ml-2 text-xs text-slate-400 hover:text-white"
+                  className="ml-2 text-xs text-neutral-500 hover:text-neutral-900"
                   onClick={() => setCoverImage("")}
                 >
                   Remove
@@ -242,8 +242,8 @@ export function BlogEditor({ mode, initial }: Props) {
             </select>
           </Field>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
+          <div className="rounded-2xl border border-black/10 bg-black/[0.03] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
               SEO
             </p>
             <div className="mt-4 space-y-4">
@@ -255,7 +255,7 @@ export function BlogEditor({ mode, initial }: Props) {
                   placeholder="SEO title (50–60 chars ideal)"
                   maxLength={70}
                 />
-                <p className="mt-1 text-[11px] text-slate-500">
+                <p className="mt-1 text-[11px] text-neutral-500">
                   {metaTitle.length}/70
                 </p>
               </Field>
@@ -268,7 +268,7 @@ export function BlogEditor({ mode, initial }: Props) {
                   placeholder="SEO description (140–160 chars ideal)"
                   maxLength={160}
                 />
-                <p className="mt-1 text-[11px] text-slate-500">
+                <p className="mt-1 text-[11px] text-neutral-500">
                   {metaDescription.length}/160
                 </p>
               </Field>
@@ -283,14 +283,14 @@ export function BlogEditor({ mode, initial }: Props) {
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black hover:bg-neutral-200 disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white hover:bg-neutral-800 disabled:opacity-60"
         >
           {saving ? <LoaderCircle className="h-4 w-4 animate-spin" /> : null}
           {mode === "edit" ? "Update post" : "Create post"}
         </button>
         <Link
           href="/dashboard/blogs"
-          className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-slate-300"
+          className="rounded-full border border-black/10 bg-black/[0.03] px-5 py-2.5 text-sm font-semibold text-neutral-600"
         >
           Cancel
         </Link>
@@ -307,12 +307,12 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <label className="block text-sm text-slate-300">
-      <span className="mb-2 block font-medium text-white">{label}</span>
+    <label className="block text-sm text-neutral-600">
+      <span className="mb-2 block font-medium text-neutral-900">{label}</span>
       {children}
     </label>
   );
 }
 
 const inputClass =
-  "w-full rounded-2xl border border-white/10 bg-navy-950/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-brand-400/40";
+  "w-full rounded-2xl border border-black/10 bg-navy-950/70 px-4 py-3 text-sm text-neutral-900 outline-none transition placeholder:text-neutral-500 focus:border-brand-400/40";

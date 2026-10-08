@@ -28,14 +28,14 @@ export function FaqSection() {
           const open = openIndex === index;
           return (
             <MotionItem key={faq.question}>
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+              <div className="overflow-hidden rounded-2xl border border-black/10 bg-black/[0.03]">
                 <button
                   type="button"
                   className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                   onClick={() => setOpenIndex(open ? -1 : index)}
                   aria-expanded={open}
                 >
-                  <span className="text-sm font-semibold text-white sm:text-base">
+                  <span className="text-sm font-semibold text-neutral-900 sm:text-base">
                     {faq.question}
                   </span>
                   <ChevronDown
@@ -53,7 +53,7 @@ export function FaqSection() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.28 }}
                     >
-                      <p className="border-t border-white/10 px-5 py-4 text-sm leading-relaxed text-slate-300">
+                      <p className="border-t border-black/10 px-5 py-4 text-sm leading-relaxed text-neutral-600">
                         {faq.answer}
                       </p>
                     </motion.div>

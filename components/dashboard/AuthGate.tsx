@@ -53,7 +53,7 @@ export function DashboardAuthGate({ children }: { children: ReactNode }) {
 
   if (!ready) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-navy-950 text-sm text-slate-400">
+      <div className="flex min-h-screen items-center justify-center bg-navy-950 text-sm text-neutral-500">
         Loading command center...
       </div>
     );
@@ -65,7 +65,7 @@ export function DashboardAuthGate({ children }: { children: ReactNode }) {
 
   if (!authed) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-navy-950 text-sm text-slate-400">
+      <div className="flex min-h-screen items-center justify-center bg-navy-950 text-sm text-neutral-500">
         Redirecting to login...
       </div>
     );
@@ -97,44 +97,44 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-navy-950 px-4">
-      <div className="w-full max-w-md rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-8 shadow-panel">
+      <div className="w-full max-w-md rounded-[1.75rem] border border-black/10 bg-black/[0.03] p-8 shadow-panel">
         <div className="mb-6 flex items-center gap-3">
           <BrandLogo variant="icon" className="h-11 w-11" />
           <div>
-            <p className="text-lg font-semibold text-white">RovixaAI Admin</p>
-            <p className="text-xs text-slate-500">Dashboard access</p>
+            <p className="text-lg font-semibold text-neutral-900">RovixaAI Admin</p>
+            <p className="text-xs text-neutral-500">Dashboard access</p>
           </div>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <label className="block text-sm text-slate-300">
-            <span className="mb-2 block font-medium text-white">Email</span>
+          <label className="block text-sm text-neutral-600">
+            <span className="mb-2 block font-medium text-neutral-900">Email</span>
             <input
               name="email"
               type="email"
               required
               defaultValue="admin@rovixa.ai"
-              className="w-full rounded-2xl border border-white/10 bg-navy-950/70 px-4 py-3 text-sm text-white outline-none focus:border-brand-400/40"
+              className="w-full rounded-2xl border border-black/10 bg-navy-950/70 px-4 py-3 text-sm text-neutral-900 outline-none focus:border-brand-400/40"
             />
           </label>
-          <label className="block text-sm text-slate-300">
-            <span className="mb-2 block font-medium text-white">Password</span>
+          <label className="block text-sm text-neutral-600">
+            <span className="mb-2 block font-medium text-neutral-900">Password</span>
             <input
               name="password"
               type="password"
               required
               defaultValue="rovixaai"
-              className="w-full rounded-2xl border border-white/10 bg-navy-950/70 px-4 py-3 text-sm text-white outline-none focus:border-brand-400/40"
+              className="w-full rounded-2xl border border-black/10 bg-navy-950/70 px-4 py-3 text-sm text-neutral-900 outline-none focus:border-brand-400/40"
             />
           </label>
           {error ? <p className="text-sm text-neutral-300">{error}</p> : null}
           <button
             type="submit"
-            className="w-full rounded-full bg-white px-4 py-3 text-sm font-semibold text-black hover:bg-neutral-200"
+            className="w-full rounded-full bg-black px-4 py-3 text-sm font-semibold text-white hover:bg-neutral-800"
           >
             Sign in to dashboard
           </button>
         </form>
-        <p className="mt-4 text-center text-xs text-slate-500">
+        <p className="mt-4 text-center text-xs text-neutral-500">
           Demo credentials are prefilled for local access.
         </p>
       </div>

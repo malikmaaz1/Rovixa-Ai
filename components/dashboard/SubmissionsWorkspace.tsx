@@ -61,8 +61,8 @@ export function SubmissionsWorkspace() {
               onClick={() => setFilter(item)}
               className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
                 filter === item
-                  ? "bg-white text-black"
-                  : "border border-white/10 bg-white/5 text-slate-300"
+                  ? "bg-black text-white"
+                  : "border border-black/10 bg-black/[0.03] text-neutral-600"
               }`}
             >
               {item}
@@ -74,7 +74,7 @@ export function SubmissionsWorkspace() {
           <Panel title={loading ? "Loading..." : "All submissions"}>
             <div className="overflow-x-auto">
               <table className="min-w-full text-left text-sm">
-                <thead className="border-b border-white/10 text-xs uppercase tracking-[0.12em] text-slate-500">
+                <thead className="border-b border-black/10 text-xs uppercase tracking-[0.12em] text-neutral-500">
                   <tr>
                     <th className="px-2 py-3 font-semibold">Name</th>
                     <th className="px-2 py-3 font-semibold">Company</th>
@@ -86,16 +86,16 @@ export function SubmissionsWorkspace() {
                   {visible.map((lead) => (
                     <tr
                       key={lead.id}
-                      className={`cursor-pointer border-b border-white/5 ${
+                      className={`cursor-pointer border-b border-black/5 ${
                         selected?.id === lead.id ? "bg-brand-500/10" : ""
                       }`}
                       onClick={() => setSelectedId(lead.id)}
                     >
-                      <td className="px-2 py-4 font-medium text-white">
+                      <td className="px-2 py-4 font-medium text-neutral-900">
                         {lead.name}
                       </td>
-                      <td className="px-2 py-4 text-slate-300">{lead.company}</td>
-                      <td className="px-2 py-4 text-slate-300">{lead.source}</td>
+                      <td className="px-2 py-4 text-neutral-600">{lead.company}</td>
+                      <td className="px-2 py-4 text-neutral-600">{lead.source}</td>
                       <td className="px-2 py-4">
                         <StatusPill status={lead.status} />
                       </td>
@@ -110,24 +110,24 @@ export function SubmissionsWorkspace() {
             {selected ? (
               <div className="space-y-4 text-sm">
                 <div>
-                  <p className="text-lg font-semibold text-white">{selected.name}</p>
-                  <p className="mt-1 text-slate-400">{selected.company}</p>
+                  <p className="text-lg font-semibold text-neutral-900">{selected.name}</p>
+                  <p className="mt-1 text-neutral-500">{selected.company}</p>
                 </div>
-                <dl className="space-y-3 text-slate-300">
+                <dl className="space-y-3 text-neutral-600">
                   <div>
-                    <dt className="text-xs uppercase tracking-[0.12em] text-slate-500">
+                    <dt className="text-xs uppercase tracking-[0.12em] text-neutral-500">
                       Email
                     </dt>
                     <dd className="mt-1">{selected.email || "—"}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs uppercase tracking-[0.12em] text-slate-500">
+                    <dt className="text-xs uppercase tracking-[0.12em] text-neutral-500">
                       Phone
                     </dt>
                     <dd className="mt-1">{selected.phone || "—"}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs uppercase tracking-[0.12em] text-slate-500">
+                    <dt className="text-xs uppercase tracking-[0.12em] text-neutral-500">
                       Message
                     </dt>
                     <dd className="mt-1">
@@ -142,7 +142,7 @@ export function SubmissionsWorkspace() {
                         key={status}
                         type="button"
                         onClick={() => void updateStatus(status)}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300 hover:bg-white/10"
+                        className="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1.5 text-xs font-semibold text-neutral-600 hover:bg-black/5"
                       >
                         Mark {status}
                       </button>
@@ -151,7 +151,7 @@ export function SubmissionsWorkspace() {
                 </div>
               </div>
             ) : (
-              <p className="text-sm text-slate-400">No submission selected.</p>
+              <p className="text-sm text-neutral-500">No submission selected.</p>
             )}
           </Panel>
         </div>
