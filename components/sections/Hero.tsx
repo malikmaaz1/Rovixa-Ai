@@ -1,10 +1,6 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2, Phone, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { site } from "@/lib/site";
-import { easeOutExpo } from "@/lib/motion";
 
 const feed = [
   { title: "Incoming Call", meta: "+1 (469) 468-1474", status: "Live" },
@@ -14,32 +10,22 @@ const feed = [
 ];
 
 export function Hero() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <section className="relative overflow-hidden pt-28 sm:pt-32 lg:pt-36">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[12%] top-10 h-[28rem] w-[28rem] rounded-full bg-black/5 blur-[130px]" />
-        <div className="absolute right-[-5%] top-32 h-[24rem] w-[24rem] rounded-full bg-black/[0.03] blur-[120px]" />
-        <div className="absolute inset-0 bg-grid opacity-35" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-navy-950 to-transparent" />
+        <div className="absolute inset-0 bg-grid opacity-25" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
       </div>
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 pb-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:px-8 lg:pb-24">
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: easeOutExpo }}
-        >
+        <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-brand-400/25 bg-brand-500/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-brand-200">
             <Sparkles className="h-3.5 w-3.5" />
             Introducing RovixaAI 2.0
           </div>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.05]">
             AI Employees That
-            <span className="mt-1 block bg-gradient-to-r from-neutral-900 via-neutral-700 to-neutral-500 bg-clip-text text-transparent">
-              Never Miss a Call
-            </span>
+            <span className="mt-1 block text-neutral-600">Never Miss a Call</span>
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-neutral-600 sm:text-lg">
             AI Receptionists, Voice Agents, and Chatbots that answer 24/7,
@@ -82,15 +68,9 @@ export function Hero() {
               </span>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 36, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.95, delay: 0.12, ease: easeOutExpo }}
-          className="relative"
-        >
-          <div className="absolute -inset-5 rounded-[2rem] bg-brand-500/15 blur-3xl" />
+        <div className="relative">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-black/10 bg-white p-4 shadow-panel sm:p-5">
             <div className="mb-4 flex items-center justify-between gap-3">
               <div>
@@ -102,7 +82,7 @@ export function Hero() {
                 </p>
               </div>
               <span className="inline-flex items-center gap-2 rounded-full bg-black/5 px-3 py-1 text-xs font-semibold text-neutral-900">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-black" />
+                <span className="h-1.5 w-1.5 rounded-full bg-black" />
                 Online
               </span>
             </div>
@@ -124,30 +104,25 @@ export function Hero() {
             </div>
 
             <div className="mt-3 space-y-2.5">
-              {feed.map((item, index) => (
-                <motion.div
+              {feed.map((item) => (
+                <div
                   key={item.title}
-                  initial={reduceMotion ? false : { opacity: 0, x: 16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    delay: 0.35 + index * 0.12,
-                    duration: 0.55,
-                    ease: easeOutExpo,
-                  }}
                   className="flex items-center justify-between gap-3 rounded-xl border border-black/8 bg-black/[0.03] px-3.5 py-3"
                 >
                   <div>
-                    <p className="text-sm font-medium text-neutral-900">{item.title}</p>
+                    <p className="text-sm font-medium text-neutral-900">
+                      {item.title}
+                    </p>
                     <p className="mt-0.5 text-xs text-neutral-500">{item.meta}</p>
                   </div>
                   <span className="rounded-full border border-brand-400/20 bg-brand-500/10 px-2.5 py-1 text-[11px] font-semibold text-brand-200">
                     {item.status}
                   </span>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

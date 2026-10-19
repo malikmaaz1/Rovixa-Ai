@@ -1,15 +1,8 @@
-"use client";
-
-import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { useState } from "react";
 import { MotionItem, MotionSection, SectionHeading } from "@/components/ui/Section";
 import { faqs } from "@/lib/content";
-import { cn } from "@/lib/cn";
 
 export function FaqSection() {
-  const [openIndex, setOpenIndex] = useState(0);
-
   return (
     <MotionSection
       id="faq"
@@ -24,45 +17,22 @@ export function FaqSection() {
       </MotionItem>
 
       <div className="mx-auto mt-12 max-w-3xl space-y-3">
-        {faqs.map((faq, index) => {
-          const open = openIndex === index;
-          return (
-            <MotionItem key={faq.question}>
-              <div className="overflow-hidden rounded-2xl border border-black/10 bg-black/[0.03]">
-                <button
-                  type="button"
-                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
-                  onClick={() => setOpenIndex(open ? -1 : index)}
-                  aria-expanded={open}
-                >
-                  <span className="text-sm font-semibold text-neutral-900 sm:text-base">
-                    {faq.question}
-                  </span>
-                  <ChevronDown
-                    className={cn(
-                      "h-5 w-5 shrink-0 text-brand-300 transition",
-                      open && "rotate-180",
-                    )}
-                  />
-                </button>
-                <AnimatePresence initial={false}>
-                  {open ? (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.28 }}
-                    >
-                      <p className="border-t border-black/10 px-5 py-4 text-sm leading-relaxed text-neutral-600">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
-              </div>
-            </MotionItem>
-          );
-        })}
+        {faqs.map((faq) => (
+          <details
+            key={faq.question}
+            className="group overflow-hidden rounded-2xl border border-black/10 bg-black/[0.03]"
+          >
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left [&::-webkit-details-marker]:hidden">
+              <span className="text-sm font-semibold text-neutral-900 sm:text-base">
+                {faq.question}
+              </span>
+              <ChevronDown className="h-5 w-5 shrink-0 text-brand-300 transition group-open:rotate-180" />
+            </summary>
+            <p className="border-t border-black/10 px-5 py-4 text-sm leading-relaxed text-neutral-600">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
       </div>
     </MotionSection>
   );

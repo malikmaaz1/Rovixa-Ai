@@ -12,28 +12,13 @@ import { navLinks, site } from "@/lib/site";
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition duration-300",
-        scrolled
-          ? "border-b border-black/10 bg-navy-950/85 backdrop-blur-xl"
-          : "bg-transparent",
-      )}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-black/8 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" aria-label="RovixaAI home" className="group">
           <BrandLogo variant="full" priority />
@@ -80,7 +65,7 @@ export function Navbar() {
       </div>
 
       {open ? (
-        <div className="border-t border-black/10 bg-navy-950/95 px-4 py-4 backdrop-blur-xl lg:hidden">
+        <div className="border-t border-black/10 bg-white px-4 py-4 lg:hidden">
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link

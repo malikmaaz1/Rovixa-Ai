@@ -1,8 +1,4 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
-import { fadeUp, stagger } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 
 type MotionSectionProps = {
@@ -15,39 +11,12 @@ type MotionSectionProps = {
 export function MotionSection({
   children,
   className,
-  delay = 0,
   id,
 }: MotionSectionProps) {
-  const reduceMotion = useReducedMotion();
-
-  if (reduceMotion) {
-    return (
-      <section id={id} className={className}>
-        {children}
-      </section>
-    );
-  }
-
   return (
-    <motion.section
-      id={id}
-      className={className}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.12, margin: "0px 0px -80px 0px" }}
-      variants={{
-        ...stagger,
-        show: {
-          ...stagger.show,
-          transition: {
-            ...stagger.show.transition,
-            delayChildren: delay,
-          },
-        },
-      }}
-    >
+    <section id={id} className={cn("cv-auto", className)}>
       {children}
-    </motion.section>
+    </section>
   );
 }
 
@@ -58,17 +27,7 @@ export function MotionItem({
   children: ReactNode;
   className?: string;
 }) {
-  const reduceMotion = useReducedMotion();
-
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
-  return (
-    <motion.div className={className} variants={fadeUp}>
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
 export function SectionHeading({

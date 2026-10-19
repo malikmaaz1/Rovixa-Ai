@@ -121,7 +121,7 @@ export async function listBlogPosts(options?: {
   const status = options?.status ?? "all";
 
   try {
-    const sql = await ready();
+    const sql = getSql();
     const rows =
       status === "all"
         ? ((await sql`SELECT * FROM blogs ORDER BY updated_at DESC`) as BlogRow[])
@@ -139,7 +139,7 @@ export async function listBlogPosts(options?: {
 
 export async function getBlogBySlug(slug: string) {
   try {
-    const sql = await ready();
+    const sql = getSql();
     const rows = (await sql`
       SELECT * FROM blogs WHERE slug = ${slug} LIMIT 1
     `) as BlogRow[];
@@ -153,7 +153,7 @@ export async function getBlogBySlug(slug: string) {
 
 export async function getBlogById(id: string) {
   try {
-    const sql = await ready();
+    const sql = getSql();
     const rows = (await sql`
       SELECT * FROM blogs WHERE id = ${id} LIMIT 1
     `) as BlogRow[];

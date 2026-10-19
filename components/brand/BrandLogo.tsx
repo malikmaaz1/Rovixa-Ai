@@ -25,8 +25,10 @@ export function BrandLogo({
         <Image
           src="/brand/icon.png"
           alt="RovixaAI"
-          width={80}
-          height={80}
+          width={40}
+          height={40}
+          sizes="40px"
+          quality={70}
           priority={priority}
           className={cn("h-full w-full object-contain", imgClassName)}
         />
@@ -44,8 +46,10 @@ export function BrandLogo({
       <Image
         src="/brand/logo.png"
         alt="RovixaAI"
-        width={220}
-        height={56}
+        width={176}
+        height={32}
+        sizes="176px"
+        quality={70}
         priority={priority}
         className={cn("h-7 w-auto object-contain sm:h-8", imgClassName)}
       />

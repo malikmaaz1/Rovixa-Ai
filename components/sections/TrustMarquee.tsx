@@ -1,5 +1,3 @@
-"use client";
-
 import { trustLogos } from "@/lib/content";
 
 export function TrustMarquee() {

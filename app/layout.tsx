@@ -6,8 +6,11 @@ import "./globals.css";
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
   subsets: ["latin"],
+  weight: ["500", "600", "700"],
   display: "swap",
   preload: true,
+  adjustFontFallback: true,
+  fallback: ["system-ui", "Segoe UI", "Arial"],
 });
 
 export const metadata: Metadata = {

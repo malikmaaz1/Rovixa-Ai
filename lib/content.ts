@@ -243,7 +243,7 @@ export const comparisonRows = [
   {
     label: "Cost",
     traditional: "$4,000+ / month",
-    rovixa: "From $499 / month",
+    rovixa: "10X less than Human receptionist",
   },
   {
     label: "Availability",
