@@ -14,7 +14,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
-    absolute: `${site.name} — AI Employees That Never Miss a Call`,
+    absolute: `${site.name} — AI Receptionist That Never Miss a Call`,
   },
   description: site.description,
 };

@@ -24,7 +24,7 @@ export function Hero() {
             Introducing RovixaAI 2.0
           </div>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.05]">
-            AI Employees That
+            AI Receptionist That
             <span className="mt-1 block text-neutral-600">Never Miss a Call</span>
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-neutral-600 sm:text-lg">

@@ -13,12 +13,12 @@ export function PricingPreview() {
       <MotionItem>
         <SectionHeading
           eyebrow="Pricing"
-          title="Simple, scalable plans built for growing businesses"
-          description="Start with the plan that fits, then scale minutes as your call volume grows."
+          title="AI Receptionist Solutions"
+          description="Monthly pricing in USD. Choose the plan that fits your call volume, then scale minutes as you grow."
         />
       </MotionItem>
 
-      <div className="mx-auto mt-12 grid max-w-4xl gap-5 md:grid-cols-2">
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
         {pricingPlans.map((plan) => (
           <MotionItem key={plan.name}>
             <div
@@ -35,27 +35,15 @@ export function PricingPreview() {
                 </span>
               ) : null}
               <h3 className="text-xl font-semibold text-neutral-900">{plan.name}</h3>
+              <p className="mt-1 text-sm font-medium text-brand-300">
+                {plan.minutes}
+              </p>
               <p className="mt-2 text-sm text-neutral-600">{plan.description}</p>
-              <div className="mt-5 flex flex-wrap items-end gap-x-2 gap-y-1">
-                {plan.period === "starting from" ? (
-                  <>
-                    <span className="pb-1 text-sm text-neutral-500">
-                      Starting from
-                    </span>
-                    <span className="text-4xl font-semibold text-neutral-900">
-                      {plan.price}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <span className="text-4xl font-semibold text-neutral-900">
-                      {plan.price}
-                    </span>
-                    <span className="pb-1 text-sm text-neutral-500">
-                      {plan.period}
-                    </span>
-                  </>
-                )}
+              <div className="mt-5 flex flex-wrap items-end gap-x-1.5 gap-y-1">
+                <span className="text-4xl font-semibold tracking-tight text-neutral-900">
+                  {plan.price}
+                </span>
+                <span className="pb-1 text-sm text-neutral-500">{plan.period}</span>
               </div>
               <ul className="mt-6 flex-1 space-y-3">
                 {plan.features.map((feature) => (
@@ -68,10 +56,13 @@ export function PricingPreview() {
                   </li>
                 ))}
               </ul>
+              <p className="mt-5 text-xs leading-relaxed text-neutral-500">
+                {plan.overage}
+              </p>
               <Button
                 href={plan.href}
                 variant={plan.featured ? "primary" : "secondary"}
-                className="mt-8 w-full"
+                className="mt-6 w-full"
                 size="lg"
               >
                 {plan.cta}
@@ -80,7 +71,6 @@ export function PricingPreview() {
           </MotionItem>
         ))}
       </div>
-
     </MotionSection>
   );
 }

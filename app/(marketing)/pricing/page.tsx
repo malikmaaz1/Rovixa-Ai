@@ -5,7 +5,7 @@ import { PricingPreview } from "@/components/sections/PricingPreview";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Simple RovixaAI pricing plans for AI receptionists, chatbots, and automation.",
+    "RovixaAI AI Receptionist pricing — Starter, Growth, Pro, and Custom plans with monthly minutes in USD.",
 };
 
 export default function PricingPage() {
@@ -14,8 +14,8 @@ export default function PricingPage() {
       <PricingPreview />
       <div className="pb-20">
         <CtaBanner
-          title="Need a custom plan?"
-          description="Tell us about your business and we’ll map the right AI coverage for your team."
+          title="Not sure which plan fits?"
+          description="Book a quick call and we’ll map the right minute volume and features for your team."
         />
       </div>
     </div>

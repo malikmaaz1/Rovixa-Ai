@@ -1,7 +1,7 @@
 export const site = {
   name: "RovixaAI",
   url: "https://rovixaai.site",
-  tagline: "AI Employees That Never Miss a Call",
+  tagline: "AI Receptionist That Never Miss a Call",
   description:
     "RovixaAI builds AI receptionists, voice agents, and chatbots that answer 24/7, qualify leads, book appointments, and automate customer support.",
   email: "hello@rovixa.ai",
